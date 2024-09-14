@@ -50,7 +50,7 @@ export const HeroSection = () => {
           <div className="size-3 rounded-full bg-emerald-300/20" />
         </HeroOrbit>
       </div>
-      <div className="container">
+      <div className="container relative">
         <div className="flex flex-col items-center">
           <Image
             src={memojiImage}
