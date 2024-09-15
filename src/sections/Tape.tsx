@@ -1,19 +1,6 @@
 import StarIcon from '@/assets/icons/star.svg';
+import { words } from '@/utils/constants';
 import { Fragment } from 'react';
-
-const words = [
-  'Performant',
-  'Accessible',
-  'Secure',
-  'Interactive',
-  'Scalable',
-  'User Friendly',
-  'Maintainable',
-  'Responsive',
-  'Search Optimized',
-  'Usable',
-  'Reliable',
-];
 
 export const TapeSection = () => {
   return (
