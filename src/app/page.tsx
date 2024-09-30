@@ -1,3 +1,6 @@
+import CursorTrail from '@/components/CursorTrail';
+import InteractiveBackground from '@/components/InteractiveBackground';
+import KonamiCode from '@/components/KonamiCode';
 import { AboutSection } from '@/sections/About';
 import { ContactSection } from '@/sections/Contact';
 import { Footer } from '@/sections/Footer';
@@ -12,12 +15,16 @@ export default function Home() {
     <div>
       <Header />
       <HeroSection />
-      <ProjectsSection />
-      <TapeSection />
-      {/* <TestimonialsSection /> */}
-      <AboutSection />
-      <ContactSection />
-      <Footer />
+      <KonamiCode />
+      <InteractiveBackground />
+      <div id="projects-section">
+        <ProjectsSection />
+        <TapeSection />
+        {/* <TestimonialsSection /> */}
+        <AboutSection />
+        <ContactSection />
+        <Footer />
+      </div>
     </div>
   );
 }

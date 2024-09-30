@@ -1,13 +1,16 @@
+'use client';
 import CheckCircleIcon from '@/assets/icons/check-circle.svg';
 import ArrowUpRight from '@/assets/icons/arrow-up-right.svg';
 import Image from 'next/image';
 import { SectionHeader } from '@/components/SectionHeader';
 import { Card } from '@/components/Card';
 import { portfolioProjects } from '@/utils/constants';
+import { useState } from 'react';
 
 export const ProjectsSection = () => {
+  const [isHovered, setIsHovered] = useState(false);
   return (
-    <section className="pb-16 lg:py-24" id="projects">
+    <section className="pb-16 lg:py-24 relative" id="projects">
       <div className="container">
         <SectionHeader
           eyebrow="Real-world Results"
@@ -45,7 +48,12 @@ export const ProjectsSection = () => {
                       </li>
                     ))}
                   </ul>
-                  <a href={project.link} target="_blank">
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                  >
                     <button className="bg-white text-gray-950 h-12 w-full md:w-auto md:px-6 rounded-xl font-semibold inline-flex items-center justify-center gap-2 mt-8">
                       <span>Visit Live Site</span>
                       <ArrowUpRight className="size-4" />

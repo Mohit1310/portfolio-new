@@ -21,16 +21,15 @@ import memojiAvatar2 from '@/assets/images/memoji-avatar-2.png';
 import memojiAvatar3 from '@/assets/images/memoji-avatar-3.png';
 import memojiAvatar4 from '@/assets/images/memoji-avatar-4.png';
 import memojiAvatar5 from '@/assets/images/memoji-avatar-5.png';
-import { title } from 'process';
 
 export const portfolioProjects = [
   {
     company: 'Project',
     year: '2023',
-    title: 'Bugbook a X clone',
+    title: 'Bugbook a 𝕏 clone',
     results: [
       { title: 'Modern stack: Next.js, Tailwind, Prisma, React Query' },
-      { title: 'Real-time social features mirroring X functionality' },
+      { title: 'Real-time social features mirroring 𝕏 functionality' },
       { title: 'Scalable architecture with efficient data management' },
     ],
     link: 'https://bugbook-62ez.vercel.app/',
