@@ -62,7 +62,7 @@ export default function KonamiCode() {
         >
           <div className="bg-white p-8 rounded-lg shadow-xl text-center text-gray-900">
             <h2 className="text-2xl font-bold mb-4">You found the secret!</h2>
-            <p>Here's a special message just for you:</p>
+            <p>Here&apos;s a special message just for you:</p>
             <motion.p
               className="text-3xl font-semibold mt-4 bg-clip-text text-transparent bg-[length:200%_auto] bg-gradient-to-r from-blue-500 to-red-500"
               animate={{
@@ -74,7 +74,7 @@ export default function KonamiCode() {
                 repeat: Infinity,
               }}
             >
-              "You're awesome!"
+              &quot;You&apos;re awesome!&quot;
             </motion.p>
             <p className="mt-4 text-sm text-gray-500">Press ESC to close</p>
           </div>
