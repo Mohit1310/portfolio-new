@@ -12,6 +12,14 @@ export const Header = () => {
           About
         </a>
         <a
+          href="/resume/Mohit_Dayma_Resume.pdf"
+          className="nav-item"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Resume
+        </a>
+        <a
           href="#contact"
           className="nav-item bg-white text-gray-900 hover:bg-white/70 hover:text-gray-900"
         >

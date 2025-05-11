@@ -7,7 +7,7 @@ import mapImage from '@/assets/images/map.png';
 import simileMemoji from '@/assets/images/memoji-smile.png';
 import { CardHeader } from '@/components/CardHeader';
 import { ToolBoxItems } from '@/components/ToolboxItems';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { useRef } from 'react';
 import { hobbies, toolBoxItems } from '@/utils/constants';
 
