@@ -50,7 +50,7 @@ export const portfolioProjects = [
   {
     company: 'Project',
     year: '2024',
-    title: 'Youtube Clone',
+    title: 'YouTube Clone',
     results: [
       { title: 'React-based YouTube clone with Tailwind CSS styling' },
       { title: 'Debounced search with live suggestion functionality' },

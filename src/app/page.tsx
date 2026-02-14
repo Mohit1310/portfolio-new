@@ -1,5 +1,3 @@
-import CursorTrail from '@/components/CursorTrail';
-import InteractiveBackground from '@/components/InteractiveBackground';
 import KonamiCode from '@/components/KonamiCode';
 import { AboutSection } from '@/sections/About';
 import { ContactSection } from '@/sections/Contact';
@@ -12,11 +10,11 @@ import { TapeSection } from '@/sections/Tape';
 
 export default function Home() {
   return (
-    <div>
+    <div className="relative overflow-x-clip">
+      <div className="pointer-events-none absolute inset-0 paper-grid opacity-40"></div>
       <Header />
       <HeroSection />
       <KonamiCode />
-      <InteractiveBackground />
       <div id="projects-section">
         <ProjectsSection />
         <TapeSection />

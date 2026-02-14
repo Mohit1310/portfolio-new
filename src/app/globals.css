@@ -3,17 +3,72 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --bg: #f5f1e7;
+    --surface: #fdf9f0;
+    --surface-strong: #efe8d8;
+    --ink: #132043;
+    --ink-soft: #344364;
+    --line: #13204326;
+    --accent: #0e5cad;
+    --accent-soft: #7caad8;
+    --copper: #b3643b;
+    --text-primary: #132043;
+    --text-muted: #344364cc;
+  }
+
+  ::selection {
+    background: #0e5cad;
+    color: #f8f4eb;
+  }
+
+  body {
+    background:
+      radial-gradient(circle at 15% 0%, #ffffffb3 0%, transparent 42%),
+      radial-gradient(circle at 85% 16%, #d8e8f766 0%, transparent 42%),
+      var(--bg);
+    color: var(--text-primary);
+  }
+
   .nav-item {
-    @apply px-4 py-1.5 rounded-full text-white/70 text-sm font-semibold hover:bg-white/10 hover:text-white transition duration-300;
+    @apply px-4 py-2 rounded-full text-sm font-semibold transition duration-300;
+    color: var(--ink-soft);
   }
 
   .hero-ring {
-    @apply absolute inset-0 border-2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-emerald-300/5 shadow-[0_0_80px_inset] shadow-emerald-300/5;
+    @apply absolute inset-0 border top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full;
+    border-color: #1320431f;
+    box-shadow: 0 0 0 1px #ffffff7a inset;
+  }
+}
+
+@layer base {
+  .nav-item:hover {
+    background: #13204312;
+    color: var(--ink);
   }
 }
 
 @layer utilities {
   .container {
     @apply lg:max-w-5xl;
+  }
+
+  .paper-grid {
+    background-image:
+      linear-gradient(to right, #1320430d 1px, transparent 1px),
+      linear-gradient(to bottom, #1320430d 1px, transparent 1px);
+    background-size: 26px 26px;
+  }
+
+  .section-divider {
+    border-top: 1px solid var(--line);
+  }
+
+  .label-gradient {
+    background: linear-gradient(90deg, var(--accent), var(--copper));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 }

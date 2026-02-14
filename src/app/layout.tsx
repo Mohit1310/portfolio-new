@@ -1,13 +1,17 @@
 import type { Metadata } from 'next';
-import { Inter, Calistoga } from 'next/font/google';
+import { IBM_Plex_Sans, Cormorant_Garamond } from 'next/font/google';
 import './globals.css';
 import { twMerge } from 'tailwind-merge';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
-const calistoga = Calistoga({
+const plexSans = IBM_Plex_Sans({
+  subsets: ['latin'],
+  variable: '--font-sans',
+  weight: ['400', '500', '600', '700'],
+});
+const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
   variable: '--font-serif',
-  weight: '400',
+  weight: ['500', '600', '700'],
 });
 
 export const metadata: Metadata = {
@@ -24,9 +28,9 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body
         className={twMerge(
-          inter.variable,
-          calistoga.variable,
-          'bg-gray-900 text-white antialiased font-sans'
+          plexSans.variable,
+          cormorant.variable,
+          'bg-[var(--bg)] text-[var(--text-primary)] antialiased font-sans'
         )}
       >
         {children}
