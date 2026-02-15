@@ -8,115 +8,6 @@ import { Reveal } from '@/components/Reveal';
 
 export const HeroSection = () => {
   return (
-<<<<<<< Updated upstream
-    <div
-      className="py-32 md:py-48 lg:py-60 relative z-0 overflow-x-clip"
-      id="home"
-    >
-      <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_70%,transparent)]">
-        <div
-          className="absolute inset-0 -z-30 opacity-5"
-          style={{ backgroundImage: `url(${grainImage.src})` }}
-        ></div>
-        <div className="size-[600px] hero-ring"></div>
-        <div className="size-[820px] hero-ring"></div>
-        <div className="size-[1020px] hero-ring"></div>
-        <div className="size-[1220px] hero-ring"></div>
-        <div className="size-[1220px] hero-ring"></div>
-        <HeroOrbit
-          size={430}
-          rotate={-14}
-          shouldOrbit
-          orbitDuration="30s"
-          shouldSpin
-          spinDuration="3s"
-        >
-          <SparkleIcon className="size-8 text-emerald-300/20" />
-        </HeroOrbit>
-        <HeroOrbit
-          size={440}
-          rotate={79}
-          shouldOrbit
-          orbitDuration="32s"
-          shouldSpin
-          spinDuration="3s"
-        >
-          <SparkleIcon className="size-5 text-emerald-300/20" />
-        </HeroOrbit>
-        <HeroOrbit
-          size={530}
-          rotate={178}
-          shouldOrbit
-          orbitDuration="34s"
-          shouldSpin
-          spinDuration="3s"
-        >
-          <SparkleIcon className="size-10 text-emerald-300/20" />
-        </HeroOrbit>
-        <HeroOrbit size={520} rotate={-41} shouldOrbit orbitDuration="36s">
-          <div className="size-2 rounded-full bg-emerald-300/20" />
-        </HeroOrbit>
-        <HeroOrbit
-          size={550}
-          rotate={20}
-          shouldOrbit
-          orbitDuration="38s"
-          shouldSpin
-          spinDuration="6s"
-        >
-          <StarIcon className="size-12 text-emerald-300" />
-        </HeroOrbit>
-        <HeroOrbit
-          size={590}
-          rotate={98}
-          shouldOrbit
-          orbitDuration="40s"
-          shouldSpin
-          spinDuration="6s"
-        >
-          <StarIcon className="size-8 text-emerald-300" />
-        </HeroOrbit>
-        <HeroOrbit size={650} rotate={-5} shouldOrbit orbitDuration="42s">
-          <div className="size-2 rounded-full bg-emerald-300/20" />
-        </HeroOrbit>
-        <HeroOrbit
-          size={710}
-          rotate={144}
-          shouldOrbit
-          orbitDuration="44s"
-          shouldSpin
-          spinDuration="3s"
-        >
-          <SparkleIcon className="size-14 text-emerald-300/20" />
-        </HeroOrbit>
-        <HeroOrbit size={720} rotate={85} shouldOrbit orbitDuration="46s">
-          <div className="size-3 rounded-full bg-emerald-300/20" />
-        </HeroOrbit>
-        <HeroOrbit
-          size={800}
-          rotate={-72}
-          shouldOrbit
-          orbitDuration="48s"
-          shouldSpin
-          spinDuration="6s"
-        >
-          <StarIcon className="size-28 text-emerald-300" />
-        </HeroOrbit>
-      </div>
-      <div className="container relative">
-        <div className="flex flex-col items-center">
-          <Image
-            src={memojiImage}
-            alt="Person peeking from behind laptop"
-            className="size-[100px]"
-          />
-          <div className="bg-gray-950 border border-gray-800 px-4 py-1.5 inline-flex items-center gap-4 rounded-lg">
-            <div className="bg-green-500 size-2.5 rounded-full relative">
-              <div className="absolute bg-green-500 size-2.5 rounded-full animate-ping-large"></div>
-            </div>
-            <div className="text-sm font-medium">
-              Avaliable for new projects
-=======
     <section id="home" className="pt-36 md:pt-40 lg:pt-44 pb-16 md:pb-20">
       <div className="container">
         <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 items-stretch">
@@ -186,7 +77,6 @@ export const HeroSection = () => {
                   className="w-[210px] md:w-[280px]"
                 />
               </motion.div>
->>>>>>> Stashed changes
             </div>
           </Reveal>
         </div>
@@ -214,6 +104,6 @@ export const HeroSection = () => {
           </a>
         </div>
       </div>
-    </div>
+    </section>
   );
 };

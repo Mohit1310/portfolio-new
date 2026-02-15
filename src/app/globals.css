@@ -3,14 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-<<<<<<< Updated upstream
-  .nav-item {
-    @apply px-4 py-1.5 rounded-full text-white/70 text-sm font-semibold hover:bg-white/10 hover:text-white transition duration-300;
-  }
-
-  .hero-ring {
-    @apply absolute inset-0 border-2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-emerald-300/5 shadow-[0_0_80px_inset] shadow-emerald-300/5;
-=======
   :root {
     --bg: #f8f4ee;
     --surface: #fcfaf6;
@@ -57,7 +49,6 @@
 
   .nav-item:hover {
     color: var(--ink);
->>>>>>> Stashed changes
   }
 
   .nav-item:hover::after {
@@ -69,8 +60,6 @@
   .container {
     @apply lg:max-w-6xl;
   }
-<<<<<<< Updated upstream
-=======
 
   .paper-grid {
     background-image:
@@ -105,5 +94,4 @@
     box-shadow: 0 18px 36px -26px rgba(35, 30, 24, 0.35);
     border-color: #b38a58;
   }
->>>>>>> Stashed changes
 }
