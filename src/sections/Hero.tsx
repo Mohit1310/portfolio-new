@@ -1,147 +1,88 @@
-import memojiImage from '@/assets/images/memoji-computer.png';
-import Image from 'next/image';
 import ArrowDown from '@/assets/icons/arrow-down.svg';
-import grainImage from '@/assets/images/grain.jpg';
-import StarIcon from '@/assets/icons/star.svg';
-import SparkleIcon from '@/assets/icons/sparkle.svg';
-import { HeroOrbit } from '@/components/HeroOrbit';
 
 export const HeroSection = () => {
   return (
-    <div
-      className="py-32 md:py-48 lg:py-60 relative z-0 overflow-x-clip"
-      id="home"
-    >
-      <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_70%,transparent)]">
-        <div
-          className="absolute inset-0 -z-30 opacity-5"
-          style={{ backgroundImage: `url(${grainImage.src})` }}
-        ></div>
-        <div className="size-[600px] hero-ring"></div>
-        <div className="size-[820px] hero-ring"></div>
-        <div className="size-[1020px] hero-ring"></div>
-        <div className="size-[1220px] hero-ring"></div>
-        <div className="size-[1220px] hero-ring"></div>
-        <HeroOrbit
-          size={430}
-          rotate={-14}
-          shouldOrbit
-          orbitDuration="30s"
-          shouldSpin
-          spinDuration="3s"
-        >
-          <SparkleIcon className="size-8 text-emerald-300/20" />
-        </HeroOrbit>
-        <HeroOrbit
-          size={440}
-          rotate={79}
-          shouldOrbit
-          orbitDuration="32s"
-          shouldSpin
-          spinDuration="3s"
-        >
-          <SparkleIcon className="size-5 text-emerald-300/20" />
-        </HeroOrbit>
-        <HeroOrbit
-          size={530}
-          rotate={178}
-          shouldOrbit
-          orbitDuration="34s"
-          shouldSpin
-          spinDuration="3s"
-        >
-          <SparkleIcon className="size-10 text-emerald-300/20" />
-        </HeroOrbit>
-        <HeroOrbit size={520} rotate={-41} shouldOrbit orbitDuration="36s">
-          <div className="size-2 rounded-full bg-emerald-300/20" />
-        </HeroOrbit>
-        <HeroOrbit
-          size={550}
-          rotate={20}
-          shouldOrbit
-          orbitDuration="38s"
-          shouldSpin
-          spinDuration="6s"
-        >
-          <StarIcon className="size-12 text-emerald-300" />
-        </HeroOrbit>
-        <HeroOrbit
-          size={590}
-          rotate={98}
-          shouldOrbit
-          orbitDuration="40s"
-          shouldSpin
-          spinDuration="6s"
-        >
-          <StarIcon className="size-8 text-emerald-300" />
-        </HeroOrbit>
-        <HeroOrbit size={650} rotate={-5} shouldOrbit orbitDuration="42s">
-          <div className="size-2 rounded-full bg-emerald-300/20" />
-        </HeroOrbit>
-        <HeroOrbit
-          size={710}
-          rotate={144}
-          shouldOrbit
-          orbitDuration="44s"
-          shouldSpin
-          spinDuration="3s"
-        >
-          <SparkleIcon className="size-14 text-emerald-300/20" />
-        </HeroOrbit>
-        <HeroOrbit size={720} rotate={85} shouldOrbit orbitDuration="46s">
-          <div className="size-3 rounded-full bg-emerald-300/20" />
-        </HeroOrbit>
-        <HeroOrbit
-          size={800}
-          rotate={-72}
-          shouldOrbit
-          orbitDuration="48s"
-          shouldSpin
-          spinDuration="6s"
-        >
-          <StarIcon className="size-28 text-emerald-300" />
-        </HeroOrbit>
-      </div>
+    <section id="home" className="relative overflow-hidden pb-16 pt-36 md:pb-20 md:pt-44">
       <div className="container relative">
-        <div className="flex flex-col items-center">
-          <Image
-            src={memojiImage}
-            alt="Person peeking from behind laptop"
-            className="size-[100px]"
-          />
-          <div className="bg-gray-950 border border-gray-800 px-4 py-1.5 inline-flex items-center gap-4 rounded-lg">
-            <div className="bg-green-500 size-2.5 rounded-full relative">
-              <div className="absolute bg-green-500 size-2.5 rounded-full animate-ping-large"></div>
+        <div className="grid items-end gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12">
+          <div>
+            <span className="section-kicker">Frontend Engineer</span>
+            <h1 className="mt-6 font-serif text-5xl leading-[0.95] tracking-tight text-white md:text-7xl lg:text-8xl">
+              Dark.
+              <br />
+              Sharp.
+              <br />
+              Memorable.
+            </h1>
+            <p className="mt-6 max-w-lg text-balance text-base leading-relaxed text-[var(--text-muted)] md:text-lg">
+              I design and build high-performance interfaces that feel cinematic,
+              intentional, and conversion-focused from first scroll to final
+              click.
+            </p>
+            <div className="mt-9 flex flex-wrap items-center gap-3">
+              <a
+                href="#projects"
+                className="inline-flex h-12 items-center gap-2 rounded-full border border-white/20 px-6 text-sm font-semibold text-white transition hover:border-[color:var(--accent-cyan)] hover:text-[color:var(--accent-cyan)]"
+              >
+                Explore Projects
+                <ArrowDown className="size-4" />
+              </a>
+              <a
+                href="#contact"
+                className="inline-flex h-12 items-center rounded-full bg-[color:var(--accent-cyan)] px-6 text-sm font-semibold text-black transition hover:brightness-110"
+              >
+                Start a Project
+              </a>
             </div>
-            <div className="text-sm font-medium">
-              Avaliable for new projects
+          </div>
+          <div className="grid-shell relative p-6 md:p-8">
+            <div className="flex items-center justify-between border-b border-white/10 pb-5">
+              <span className="text-xs uppercase tracking-[0.22em] text-[var(--text-muted)]">
+                Live Signals
+              </span>
+              <span className="rounded-full border border-emerald-300/35 bg-emerald-300/15 px-3 py-1 text-xs text-emerald-200">
+                Available now
+              </span>
+            </div>
+            <div className="mt-6 space-y-5">
+              <div>
+                <p className="text-xs uppercase tracking-[0.2em] text-[var(--text-muted)]">
+                  Focus
+                </p>
+                <p className="mt-2 text-lg font-semibold text-white md:text-xl">
+                  Next.js, React, TypeScript, Motion
+                </p>
+              </div>
+              <div className="grid grid-cols-3 gap-3 text-center">
+                <div className="rounded-2xl border border-white/10 bg-black/30 px-2 py-4">
+                  <p className="font-serif text-3xl text-[color:var(--accent-cyan)]">
+                    4+
+                  </p>
+                  <p className="mt-1 text-xs uppercase tracking-[0.15em] text-[var(--text-muted)]">
+                    Years
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-black/30 px-2 py-4">
+                  <p className="font-serif text-3xl text-[color:var(--accent-lime)]">
+                    20+
+                  </p>
+                  <p className="mt-1 text-xs uppercase tracking-[0.15em] text-[var(--text-muted)]">
+                    Launches
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-black/30 px-2 py-4">
+                  <p className="font-serif text-3xl text-[color:var(--accent-orange)]">
+                    99%
+                  </p>
+                  <p className="mt-1 text-xs uppercase tracking-[0.15em] text-[var(--text-muted)]">
+                    Quality
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div className="max-w-lg mx-auto">
-          <h1 className="font-serif text-3xl md:text-5xl text-center mt-8 tracking-wide">
-            Building Exceptional User Experiences
-          </h1>
-          <p className="mt-4 text-center text-white/60 md:text-lg">
-            I specialize in transforming designs into functional,
-            high-performing web applications. Let&apos;s discuss your project.
-          </p>
-        </div>
-        <div className="flex flex-col md:flex-row justify-center items-center mt-8 gap-4">
-          <a href="#projects">
-            <button className="inline-flex items-center gap-2 border border-white/15 px-6 h-12 rounded-xl">
-              <span className="font-semibold">Explore My Work</span>
-              <ArrowDown className="size-4" />
-            </button>
-          </a>
-          <a href="#contact">
-            <button className="inilne-flex items-center gap-2 border border-white bg-white text-gray-900  px-6 h-12 rounded-xl">
-              <span>👋</span>
-              <span className="font-semibold">Let&apos;s Connect</span>
-            </button>
-          </a>
-        </div>
       </div>
-    </div>
+    </section>
   );
 };

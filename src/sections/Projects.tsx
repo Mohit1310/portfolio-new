@@ -1,74 +1,62 @@
-'use client';
-import CheckCircleIcon from '@/assets/icons/check-circle.svg';
 import ArrowUpRight from '@/assets/icons/arrow-up-right.svg';
+import CheckCircleIcon from '@/assets/icons/check-circle.svg';
 import Image from 'next/image';
 import { SectionHeader } from '@/components/SectionHeader';
-import { Card } from '@/components/Card';
 import { portfolioProjects } from '@/utils/constants';
-import { useState } from 'react';
 
 export const ProjectsSection = () => {
-  const [isHovered, setIsHovered] = useState(false);
   return (
-    <section className="pb-16 lg:py-24 relative" id="projects">
+    <section id="projects" className="py-16 md:py-24">
       <div className="container">
         <SectionHeader
-          eyebrow="Real-world Results"
-          title="Featured Projects"
-          description="See how I transformed concepts into engaging digital experiences."
+          eyebrow="Selected Work"
+          title="Projects that ship with intent"
+          description="Each build balances visual identity, technical rigor, and measurable user outcomes."
         />
-        <div className="flex flex-col mt-10 gap-20 md:mt-20">
-          {portfolioProjects.map((project, projectIndex) => (
-            <Card
+
+        <div className="space-y-8">
+          {portfolioProjects.map((project, index) => (
+            <article
               key={project.title}
-              className="px-8 pt-8 pb-0 md:pt-12 md:px-10 lg:pt-16 lg:px-20 sticky"
-              style={{
-                top: `calc(64px + ${projectIndex * 40}px)`,
-              }}
+              className="grid-shell group grid gap-6 p-5 md:p-7 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8"
             >
-              <div className="lg:grid lg:grid-cols-2 lg:gap-16">
-                <div className="lg:pb-16">
-                  <div className="bg-gradient-to-r from-emerald-300 to-sky-400 inline-flex gap-2 font-bold uppercase tracking-widest text-sm text-transparent bg-clip-text">
-                    <span>{project.company}</span>
-                    <span>&bull;</span>
-                    <span>{project.year}</span>
-                  </div>
-                  <h3 className="font-serif text-2xl mt-2 md:text-4xl md:mt-5">
-                    {project.title}
-                  </h3>
-                  <hr className="border-t-2 border-white/5 mt-4 md:mt-5" />
-                  <ul className="flex flex-col gap-4 mt-4 md:mt-5">
-                    {project.results.map((result) => (
-                      <li
-                        key={result.title}
-                        className="flex gap-2 text-sm md:text-base text-white/50"
-                      >
-                        <CheckCircleIcon className="size-6 flex-shrink-0" />
-                        <span>{result.title}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    onMouseEnter={() => setIsHovered(true)}
-                    onMouseLeave={() => setIsHovered(false)}
-                  >
-                    <button className="bg-white text-gray-950 h-12 w-full md:w-auto md:px-6 rounded-xl font-semibold inline-flex items-center justify-center gap-2 mt-8">
-                      <span>Visit Live Site</span>
-                      <ArrowUpRight className="size-4" />
-                    </button>
-                  </a>
-                </div>
-                <div className="relative">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    className="mt-8 -mb-4 md:mb-0 lg:mt-0 lg:absolute lg:h-full lg:w-auto lg:max-w-none"
-                  />
-                </div>
+              <div className="order-2 lg:order-1">
+                <p className="text-xs uppercase tracking-[0.2em] text-[var(--text-muted)]">
+                  {project.company} / {project.year} / {String(index + 1).padStart(2, '0')}
+                </p>
+                <h3 className="mt-3 font-serif text-3xl tracking-tight text-white md:text-4xl">
+                  {project.title}
+                </h3>
+                <ul className="mt-5 space-y-3">
+                  {project.results.map((result) => (
+                    <li
+                      key={result.title}
+                      className="flex items-start gap-2 text-sm leading-relaxed text-[var(--text-muted)] md:text-base"
+                    >
+                      <CheckCircleIcon className="mt-0.5 size-5 shrink-0 text-[color:var(--accent-lime)]" />
+                      <span>{result.title}</span>
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-7 inline-flex h-11 items-center gap-2 rounded-full border border-[color:var(--accent-cyan)] px-5 text-sm font-semibold text-[color:var(--accent-cyan)] transition hover:bg-[color:var(--accent-cyan)] hover:text-black"
+                >
+                  View Live
+                  <ArrowUpRight className="size-4" />
+                </a>
               </div>
-            </Card>
+
+              <div className="order-1 overflow-hidden rounded-2xl border border-white/10 bg-black/30 lg:order-2">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                />
+              </div>
+            </article>
           ))}
         </div>
       </div>
