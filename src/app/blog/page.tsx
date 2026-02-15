@@ -28,7 +28,7 @@ export default function BlogPage() {
           <h1 className="mt-4 font-serif text-4xl text-white md:text-6xl">
             Insights on frontend craft
           </h1>
-          <p className="mt-4 max-w-2xl text-sm text-(--text-muted) md:text-base">
+          <p className="mt-4 text-sm text-(--text-muted) md:text-base">
             Practical notes from shipping performant interfaces, refining UX, and
             maintaining quality at scale.
           </p>

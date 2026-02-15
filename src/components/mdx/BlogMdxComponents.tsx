@@ -1,6 +1,10 @@
 import type { MDXComponents } from 'mdx/types';
 import { Callout } from './Callout';
-import { DemoCounter } from './DemoCounter';
+import {
+  EventLoopComplexDemo,
+  EventLoopSimpleDemo,
+  EventLoopTimeoutDemo,
+} from './EventLoopSimulator';
 
 export const blogMdxComponents: MDXComponents = {
   h2: (props) => (
@@ -27,5 +31,7 @@ export const blogMdxComponents: MDXComponents = {
     />
   ),
   Callout,
-  DemoCounter,
+  EventLoopSimpleDemo,
+  EventLoopComplexDemo,
+  EventLoopTimeoutDemo,
 };

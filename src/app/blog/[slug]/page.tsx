@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { notFound } from 'next/navigation';
 import { blogMdxComponents } from '@/components/mdx/BlogMdxComponents';
@@ -43,6 +44,10 @@ export async function generateMetadata({
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
+  const posts = getAllPosts();
+  const postIndex = posts.findIndex((entry) => entry.slug === slug);
+  const previousPost = postIndex < posts.length - 1 ? posts[postIndex + 1] : null;
+  const nextPost = postIndex > 0 ? posts[postIndex - 1] : null;
 
   if (!post) {
     notFound();
@@ -73,6 +78,42 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <div className="prose prose-invert mt-8 max-w-none space-y-5">
             <MDXRemote source={post.content} components={blogMdxComponents} />
           </div>
+
+          {(previousPost || nextPost) && (
+            <div className="mt-10 grid gap-3 border-t border-white/10 pt-6 md:grid-cols-2">
+              {previousPost ? (
+                <Link
+                  href={`/blog/${previousPost.slug}`}
+                  className="rounded-2xl border border-white/10 bg-black/25 p-4 transition hover:border-white/25"
+                >
+                  <p className="text-xs uppercase tracking-[0.14em] text-(--text-muted)">
+                    Previous Article
+                  </p>
+                  <p className="mt-2 text-lg font-semibold text-white">
+                    {previousPost.title}
+                  </p>
+                </Link>
+              ) : (
+                <div />
+              )}
+
+              {nextPost ? (
+                <Link
+                  href={`/blog/${nextPost.slug}`}
+                  className="rounded-2xl border border-white/10 bg-black/25 p-4 text-right transition hover:border-white/25"
+                >
+                  <p className="text-xs uppercase tracking-[0.14em] text-(--text-muted)">
+                    Next Article
+                  </p>
+                  <p className="mt-2 text-lg font-semibold text-white">
+                    {nextPost.title}
+                  </p>
+                </Link>
+              ) : (
+                <div />
+              )}
+            </div>
+          )}
         </article>
       </div>
     </main>
