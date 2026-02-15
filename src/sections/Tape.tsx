@@ -1,5 +1,5 @@
-import StarIcon from '@/assets/icons/star.svg';
 import { words } from '@/utils/constants';
+import { StarIcon } from 'lucide-react';
 import { Fragment } from 'react';
 
 export const TapeSection = () => {

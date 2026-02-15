@@ -1,7 +1,7 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
-import ArrowUpRightIcon from '@/assets/icons/arrow-up-right.svg';
+import { ArrowUpRightIcon } from 'lucide-react';
 
 export const ContactSection = () => {
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>(

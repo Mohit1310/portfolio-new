@@ -1,8 +1,7 @@
-import ArrowUpRight from '@/assets/icons/arrow-up-right.svg';
-import CheckCircleIcon from '@/assets/icons/check-circle.svg';
 import Image from 'next/image';
 import { SectionHeader } from '@/components/SectionHeader';
 import { portfolioProjects } from '@/utils/constants';
+import { ArrowUpRight, CheckCircleIcon } from 'lucide-react';
 
 export const ProjectsSection = () => {
   return (
