@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { notFound } from 'next/navigation';
 import { blogMdxComponents } from '@/components/mdx/BlogMdxComponents';
+import { Header } from '@/sections/Header';
 import { getAllPosts, getPostBySlug } from '@/utils/blogs';
 
 interface BlogPostPageProps {
@@ -50,15 +50,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <main className="min-h-screen pb-14 pt-28 md:pt-32">
+      <Header />
       <div className="container">
         <article className="grid-shell p-6 md:p-10">
-          <Link
-            href="/blog"
-            className="text-sm font-semibold text-(--text-muted) transition hover:text-white"
-          >
-            ← Back to Blog
-          </Link>
-          <p className="mt-5 text-xs uppercase tracking-[0.16em] text-(--text-muted)">
+          <p className="text-xs uppercase tracking-[0.16em] text-(--text-muted)">
             {formatDate(post.publishedAt)} • {post.readTime}
           </p>
           <h1 className="mt-3 max-w-4xl font-serif text-4xl text-white md:text-6xl">

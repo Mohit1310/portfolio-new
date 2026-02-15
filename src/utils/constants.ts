@@ -8,9 +8,18 @@ export const portfolioProjects = [
     year: '2023',
     title: 'Bugbook a 𝕏 clone',
     results: [
-      { title: 'Modern stack: Next.js, Tailwind, Prisma, React Query' },
-      { title: 'Real-time social features mirroring 𝕏 functionality' },
-      { title: 'Scalable architecture with efficient data management' },
+      {
+        title:
+          'Built with Next.js, Tailwind CSS, Prisma, and React Query to deliver a fast, modern UI with reliable client-server state handling.',
+      },
+      {
+        title:
+          'Implemented core social interactions inspired by 𝕏, including timeline-driven content flow and responsive engagement patterns.',
+      },
+      {
+        title:
+          'Structured data models and API usage for maintainability, enabling cleaner scaling as feature complexity and user activity grow.',
+      },
     ],
     link: 'https://bugbook-62ez.vercel.app/',
     image: bugbookLandingPage,
@@ -20,9 +29,18 @@ export const portfolioProjects = [
     year: '2023',
     title: 'Netflix with GPT search',
     results: [
-      { title: 'React-powered Netflix clone with Tailwind and Firebase' },
-      { title: 'AI-enhanced search for intuitive movie discovery' },
-      { title: 'Comprehensive movie database integration using TMDB API' },
+      {
+        title:
+          'Developed a React-based Netflix clone using Tailwind CSS and Firebase, with smooth browsing flows and reusable UI sections.',
+      },
+      {
+        title:
+          'Integrated GPT-assisted search to improve content discovery by translating user intent into more relevant movie suggestions.',
+      },
+      {
+        title:
+          'Connected TMDB APIs for dynamic catalog data, giving users up-to-date movie details, posters, and category-based exploration.',
+      },
     ],
     link: 'https://nettflixgpt.netlify.app',
     image: netflixLandingPage,
@@ -32,9 +50,18 @@ export const portfolioProjects = [
     year: '2024',
     title: 'Youtube Clone',
     results: [
-      { title: 'React-based YouTube clone with Tailwind CSS styling' },
-      { title: 'Debounced search with live suggestion functionality' },
-      { title: 'Static nested comments mimic lively user interactions' },
+      {
+        title:
+          'Created a React YouTube clone with Tailwind CSS, focusing on a familiar layout, clear content hierarchy, and responsive behavior.',
+      },
+      {
+        title:
+          'Added debounced search and live suggestions to reduce unnecessary requests while keeping the search experience quick and fluid.',
+      },
+      {
+        title:
+          'Designed nested comment threads to mirror real discussion structures and improve readability for longer conversation chains.',
+      },
     ],
     link: 'https://advancedyoutube.netlify.app',
     image: youtubeLandingPage,

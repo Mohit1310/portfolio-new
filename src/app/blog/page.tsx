@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import ArrowUpRightIcon from '@/assets/icons/arrow-up-right.svg';
+import { ArrowUpRightIcon } from 'lucide-react';
+import { Header } from '@/sections/Header';
 import { getAllPosts } from '@/utils/blogs';
 
 export const metadata: Metadata = {
@@ -20,6 +21,7 @@ export default function BlogPage() {
 
   return (
     <main className="min-h-screen pb-14 pt-28 md:pt-32">
+      <Header />
       <div className="container">
         <div className="grid-shell mb-10 p-6 md:p-9">
           <p className="section-kicker">Blog</p>
@@ -30,14 +32,6 @@ export default function BlogPage() {
             Practical notes from shipping performant interfaces, refining UX, and
             maintaining quality at scale.
           </p>
-          <div className="mt-6">
-            <Link
-              href="/"
-              className="inline-flex h-10 items-center rounded-full border border-white/20 px-5 text-sm font-semibold text-white transition hover:border-(--accent-cyan) hover:text-(--accent-cyan)"
-            >
-              Back to Home
-            </Link>
-          </div>
         </div>
 
         <div className="space-y-5">
