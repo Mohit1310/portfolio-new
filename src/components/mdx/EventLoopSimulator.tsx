@@ -1,68 +1,14 @@
 'use client';
 
-import { useMemo, useState } from 'react';
-import { twMerge } from 'tailwind-merge';
+import { AnimatePresence, motion } from 'motion/react';
+import { useEffect, useMemo, useState } from 'react';
+import { QueueCard } from './event-loop/QueueCard';
+import { complexScenario } from './event-loop/scenarios/complexScenario';
+import { simpleScenario } from './event-loop/scenarios/simpleScenario';
+import { timeoutScenario } from './event-loop/scenarios/timeoutScenario';
+import type { EventLoopSimulatorProps } from './event-loop/types';
 
-type QueueItem = {
-  id: string;
-  label: string;
-};
-
-type Step = {
-  title: string;
-  explanation: string;
-  stack: string[];
-  taskQueue: QueueItem[];
-  microtaskQueue: QueueItem[];
-  output: string[];
-};
-
-interface EventLoopSimulatorProps {
-  title: string;
-  subtitle: string;
-  code: string;
-  expectedOrder: string[];
-  steps: Step[];
-}
-
-const QueueCard = ({
-  title,
-  items,
-  emptyLabel,
-}: {
-  title: string;
-  items: string[];
-  emptyLabel: string;
-}) => {
-  return (
-    <div className="rounded-xl border border-white/10 bg-black/25 p-3">
-      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-(--text-muted)">
-        {title}
-      </p>
-      <div className="mt-2 space-y-2">
-        {items.length ? (
-          items.map((item, index) => (
-            <div
-              key={`${title}-${item}-${index}`}
-              className={twMerge(
-                'rounded-md border px-2 py-1 text-xs md:text-sm',
-                index === 0
-                  ? 'border-(--accent-cyan)/60 bg-(--accent-cyan)/15 text-cyan-100'
-                  : 'border-white/10 bg-white/5 text-white/85'
-              )}
-            >
-              {item}
-            </div>
-          ))
-        ) : (
-          <p className="rounded-md border border-dashed border-white/10 px-2 py-1 text-xs text-(--text-muted)">
-            {emptyLabel}
-          </p>
-        )}
-      </div>
-    </div>
-  );
-};
+const AUTOPLAY_INTERVAL_MS = 1200;
 
 export const EventLoopSimulator = ({
   title,
@@ -72,7 +18,9 @@ export const EventLoopSimulator = ({
   steps,
 }: EventLoopSimulatorProps) => {
   const [stepIndex, setStepIndex] = useState(0);
+  const [isAutoplay, setIsAutoplay] = useState(false);
   const currentStep = steps[stepIndex];
+  const isLastStep = stepIndex === steps.length - 1;
 
   const orderPreview = useMemo(
     () => expectedOrder.map((entry, index) => `${index + 1}. ${entry}`).join('\n'),
@@ -80,7 +28,58 @@ export const EventLoopSimulator = ({
   );
 
   const canGoBack = stepIndex > 0;
-  const canGoNext = stepIndex < steps.length - 1;
+  const canGoNext = !isLastStep;
+
+  useEffect(() => {
+    if (!isAutoplay || isLastStep) {
+      return;
+    }
+
+    const timer = window.setInterval(() => {
+      setStepIndex((prev) => {
+        if (prev >= steps.length - 1) {
+          setIsAutoplay(false);
+          window.clearInterval(timer);
+          return prev;
+        }
+
+        const next = prev + 1;
+        if (next >= steps.length - 1) {
+          setIsAutoplay(false);
+        }
+        return next;
+      });
+    }, AUTOPLAY_INTERVAL_MS);
+
+    return () => window.clearInterval(timer);
+  }, [isAutoplay, isLastStep, steps.length]);
+
+  const stopAutoplay = () => setIsAutoplay(false);
+
+  const handleReset = () => {
+    stopAutoplay();
+    setStepIndex(0);
+  };
+
+  const handlePrevious = () => {
+    stopAutoplay();
+    setStepIndex((prev) => Math.max(0, prev - 1));
+  };
+
+  const handleNext = () => {
+    stopAutoplay();
+    setStepIndex((prev) => Math.min(steps.length - 1, prev + 1));
+  };
+
+  const toggleAutoplay = () => {
+    if (!isAutoplay && isLastStep) {
+      setStepIndex(0);
+      setIsAutoplay(true);
+      return;
+    }
+
+    setIsAutoplay((prev) => !prev);
+  };
 
   return (
     <section className="my-8 overflow-hidden rounded-3xl border border-white/10 bg-black/35">
@@ -114,13 +113,23 @@ export const EventLoopSimulator = ({
 
       <div className="border-y border-white/10 bg-black/25 p-4 md:p-5">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <p className="text-sm font-semibold text-white">
-            Step {stepIndex + 1} / {steps.length}: {currentStep.title}
-          </p>
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.p
+              key={`title-${stepIndex}`}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.22, ease: 'easeOut' }}
+              className="text-sm font-semibold text-white"
+            >
+              Step {stepIndex + 1} / {steps.length}: {currentStep.title}
+            </motion.p>
+          </AnimatePresence>
+
           <div className="flex items-center gap-2">
             <button
               type="button"
-              onClick={() => setStepIndex(0)}
+              onClick={handleReset}
               className="rounded-full border border-white/15 px-3 py-1.5 text-xs font-semibold text-white disabled:cursor-not-allowed disabled:opacity-45"
               disabled={!canGoBack}
             >
@@ -128,7 +137,7 @@ export const EventLoopSimulator = ({
             </button>
             <button
               type="button"
-              onClick={() => setStepIndex((prev) => Math.max(0, prev - 1))}
+              onClick={handlePrevious}
               className="rounded-full border border-white/15 px-3 py-1.5 text-xs font-semibold text-white disabled:cursor-not-allowed disabled:opacity-45"
               disabled={!canGoBack}
             >
@@ -136,16 +145,34 @@ export const EventLoopSimulator = ({
             </button>
             <button
               type="button"
-              onClick={() => setStepIndex((prev) => Math.min(steps.length - 1, prev + 1))}
+              onClick={handleNext}
               className="rounded-full bg-(--accent-cyan) px-3 py-1.5 text-xs font-semibold text-black disabled:cursor-not-allowed disabled:opacity-45"
               disabled={!canGoNext}
             >
-              Next
+              Next Step
+            </button>
+            <button
+              type="button"
+              onClick={toggleAutoplay}
+              className="rounded-full border border-(--accent-lime)/70 bg-(--accent-lime)/20 px-3 py-1.5 text-xs font-semibold text-(--accent-lime)"
+            >
+              {isAutoplay ? 'Pause' : 'Autoplay'}
             </button>
           </div>
         </div>
 
-        <p className="mt-3 text-sm text-(--text-muted)">{currentStep.explanation}</p>
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.p
+            key={`desc-${stepIndex}`}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.22, ease: 'easeOut' }}
+            className="mt-3 text-sm text-(--text-muted)"
+          >
+            {currentStep.explanation}
+          </motion.p>
+        </AnimatePresence>
       </div>
 
       <div className="grid gap-3 p-4 md:grid-cols-3 md:gap-4 md:p-5">
@@ -170,300 +197,43 @@ export const EventLoopSimulator = ({
         <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-(--text-muted)">
           Console Output So Far
         </p>
+
         <div className="mt-2 rounded-xl border border-white/10 bg-black/25 p-3">
-          {currentStep.output.length ? (
-            <ol className="space-y-1 text-sm text-white/90">
-              {currentStep.output.map((line, index) => (
-                <li key={`${line}-${index}`}>{index + 1}. {line}</li>
-              ))}
-            </ol>
-          ) : (
-            <p className="text-sm text-(--text-muted)">No console output yet.</p>
-          )}
+          <AnimatePresence mode="wait" initial={false}>
+            {currentStep.output.length ? (
+              <motion.ol
+                key={`output-${stepIndex}`}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.2, ease: 'easeOut' }}
+                className="space-y-1 text-sm text-white/90"
+              >
+                {currentStep.output.map((line, index) => (
+                  <li key={`${line}-${index}`}>{index + 1}. {line}</li>
+                ))}
+              </motion.ol>
+            ) : (
+              <motion.p
+                key="output-empty"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.2, ease: 'easeOut' }}
+                className="text-sm text-(--text-muted)"
+              >
+                No console output yet.
+              </motion.p>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </section>
   );
 };
 
-const simpleSteps: Step[] = [
-  {
-    title: 'Script starts on call stack',
-    explanation: 'Global script enters the call stack.',
-    stack: ['global()'],
-    microtaskQueue: [],
-    taskQueue: [],
-    output: [],
-  },
-  {
-    title: 'Synchronous log runs immediately',
-    explanation: 'console.log("A") executes while still in the script.',
-    stack: ['global()', 'console.log("A")'],
-    microtaskQueue: [],
-    taskQueue: [],
-    output: ['A'],
-  },
-  {
-    title: 'Timeout callback is scheduled as task',
-    explanation: 'setTimeout(..., 0) does not run now; callback goes to task queue.',
-    stack: ['global()'],
-    microtaskQueue: [],
-    taskQueue: [{ id: 't1', label: 'timeout callback -> "B - timeout"' }],
-    output: ['A'],
-  },
-  {
-    title: 'Promise callback is scheduled as microtask',
-    explanation: 'Promise.then callback enters microtask queue.',
-    stack: ['global()'],
-    microtaskQueue: [{ id: 'm1', label: 'promise callback -> "C - promise"' }],
-    taskQueue: [{ id: 't1', label: 'timeout callback -> "B - timeout"' }],
-    output: ['A'],
-  },
-  {
-    title: 'Last synchronous log runs',
-    explanation: 'console.log("D") is still part of script execution.',
-    stack: ['global()', 'console.log("D")'],
-    microtaskQueue: [{ id: 'm1', label: 'promise callback -> "C - promise"' }],
-    taskQueue: [{ id: 't1', label: 'timeout callback -> "B - timeout"' }],
-    output: ['A', 'D'],
-  },
-  {
-    title: 'Script finishes, stack becomes empty',
-    explanation: 'Event loop now checks queues because call stack is empty.',
-    stack: [],
-    microtaskQueue: [{ id: 'm1', label: 'promise callback -> "C - promise"' }],
-    taskQueue: [{ id: 't1', label: 'timeout callback -> "B - timeout"' }],
-    output: ['A', 'D'],
-  },
-  {
-    title: 'Microtask queue drains first',
-    explanation: 'Promise callback runs before task queue callbacks.',
-    stack: ['promise callback'],
-    microtaskQueue: [],
-    taskQueue: [{ id: 't1', label: 'timeout callback -> "B - timeout"' }],
-    output: ['A', 'D', 'C - promise'],
-  },
-  {
-    title: 'Next task runs',
-    explanation: 'Timeout callback finally executes.',
-    stack: ['timeout callback'],
-    microtaskQueue: [],
-    taskQueue: [],
-    output: ['A', 'D', 'C - promise', 'B - timeout'],
-  },
-];
+export const EventLoopSimpleDemo = () => <EventLoopSimulator {...simpleScenario} />;
 
-const complexSteps: Step[] = [
-  {
-    title: 'Script enters stack',
-    explanation: 'Global script begins.',
-    stack: ['global()'],
-    microtaskQueue: [],
-    taskQueue: [],
-    output: [],
-  },
-  {
-    title: 'First sync log',
-    explanation: 'console.log("1") runs immediately.',
-    stack: ['global()', 'console.log("1")'],
-    microtaskQueue: [],
-    taskQueue: [],
-    output: ['1'],
-  },
-  {
-    title: 'First timeout is queued as task',
-    explanation: 'Callback for "2 - timeout 1" waits in task queue.',
-    stack: ['global()'],
-    microtaskQueue: [],
-    taskQueue: [{ id: 't1', label: 'timeout 1 -> "2 - timeout 1"' }],
-    output: ['1'],
-  },
-  {
-    title: 'Promise microtask is queued',
-    explanation: 'Callback for "4 - microtask 1" goes to microtask queue.',
-    stack: ['global()'],
-    microtaskQueue: [{ id: 'm1', label: 'microtask 1 -> "4 - microtask 1"' }],
-    taskQueue: [{ id: 't1', label: 'timeout 1 -> "2 - timeout 1"' }],
-    output: ['1'],
-  },
-  {
-    title: 'Second sync log',
-    explanation: 'console.log("6") runs before async callbacks.',
-    stack: ['global()', 'console.log("6")'],
-    microtaskQueue: [{ id: 'm1', label: 'microtask 1 -> "4 - microtask 1"' }],
-    taskQueue: [{ id: 't1', label: 'timeout 1 -> "2 - timeout 1"' }],
-    output: ['1', '6'],
-  },
-  {
-    title: 'Script ends, microtasks run first',
-    explanation: 'Event loop drains microtask queue.',
-    stack: ['microtask 1'],
-    microtaskQueue: [],
-    taskQueue: [{ id: 't1', label: 'timeout 1 -> "2 - timeout 1"' }],
-    output: ['1', '6', '4 - microtask 1'],
-  },
-  {
-    title: 'Microtask schedules another timeout',
-    explanation: 'setTimeout inside microtask queues "5 - timeout inside microtask" behind existing tasks.',
-    stack: [],
-    microtaskQueue: [],
-    taskQueue: [
-      { id: 't1', label: 'timeout 1 -> "2 - timeout 1"' },
-      { id: 't2', label: 'timeout 2 -> "5 - timeout inside microtask"' },
-    ],
-    output: ['1', '6', '4 - microtask 1'],
-  },
-  {
-    title: 'First task executes',
-    explanation: 'timeout 1 callback logs "2 - timeout 1".',
-    stack: ['timeout 1 callback'],
-    microtaskQueue: [],
-    taskQueue: [{ id: 't2', label: 'timeout 2 -> "5 - timeout inside microtask"' }],
-    output: ['1', '6', '4 - microtask 1', '2 - timeout 1'],
-  },
-  {
-    title: 'Microtask created inside timeout runs before next task',
-    explanation: 'Promise.then inside timeout 1 becomes a microtask and executes immediately before timeout 2.',
-    stack: ['microtask from timeout 1'],
-    microtaskQueue: [],
-    taskQueue: [{ id: 't2', label: 'timeout 2 -> "5 - timeout inside microtask"' }],
-    output: [
-      '1',
-      '6',
-      '4 - microtask 1',
-      '2 - timeout 1',
-      '3 - microtask inside timeout',
-    ],
-  },
-  {
-    title: 'Second task executes',
-    explanation: 'Now timeout 2 logs "5 - timeout inside microtask".',
-    stack: ['timeout 2 callback'],
-    microtaskQueue: [],
-    taskQueue: [],
-    output: [
-      '1',
-      '6',
-      '4 - microtask 1',
-      '2 - timeout 1',
-      '3 - microtask inside timeout',
-      '5 - timeout inside microtask',
-    ],
-  },
-];
+export const EventLoopComplexDemo = () => <EventLoopSimulator {...complexScenario} />;
 
-const timeoutSteps: Step[] = [
-  {
-    title: 'Script starts',
-    explanation: 'Global script enters stack and sets reference start time.',
-    stack: ['global()'],
-    microtaskQueue: [],
-    taskQueue: [],
-    output: [],
-  },
-  {
-    title: 'A 1000ms timeout is scheduled',
-    explanation: 'This callback cannot run before at least 1000ms.',
-    stack: ['global()'],
-    microtaskQueue: [],
-    taskQueue: [{ id: 't1', label: 'timeout(1000) -> "T1 ~1000ms" (waiting timer)' }],
-    output: [],
-  },
-  {
-    title: 'A 0ms timeout is scheduled',
-    explanation: '0ms means minimum delay, not immediate execution.',
-    stack: ['global()'],
-    microtaskQueue: [],
-    taskQueue: [
-      { id: 't1', label: 'timeout(1000) -> "T1 ~1000ms" (waiting timer)' },
-      { id: 't2', label: 'timeout(0) -> "T2 ~0ms"' },
-    ],
-    output: [],
-  },
-  {
-    title: 'Promise microtask is queued',
-    explanation: 'Promise.then goes to microtask queue.',
-    stack: ['global()'],
-    microtaskQueue: [{ id: 'm1', label: 'promise callback -> "Microtask"' }],
-    taskQueue: [
-      { id: 't1', label: 'timeout(1000) -> "T1 ~1000ms" (waiting timer)' },
-      { id: 't2', label: 'timeout(0) -> "T2 ~0ms"' },
-    ],
-    output: [],
-  },
-  {
-    title: 'Sync log runs',
-    explanation: 'console.log("Sync end") executes during script.',
-    stack: ['global()', 'console.log("Sync end")'],
-    microtaskQueue: [{ id: 'm1', label: 'promise callback -> "Microtask"' }],
-    taskQueue: [
-      { id: 't1', label: 'timeout(1000) -> "T1 ~1000ms" (waiting timer)' },
-      { id: 't2', label: 'timeout(0) -> "T2 ~0ms"' },
-    ],
-    output: ['Sync end (near 0ms)'],
-  },
-  {
-    title: 'Microtask runs first',
-    explanation: 'After stack clears, microtask runs before any timeout.',
-    stack: ['promise callback'],
-    microtaskQueue: [],
-    taskQueue: [
-      { id: 't1', label: 'timeout(1000) -> "T1 ~1000ms" (waiting timer)' },
-      { id: 't2', label: 'timeout(0) -> "T2 ~0ms"' },
-    ],
-    output: ['Sync end (near 0ms)', 'Microtask (near 0ms)'],
-  },
-  {
-    title: '0ms timeout executes next',
-    explanation: 'Now task queue callback with 0ms delay runs.',
-    stack: ['timeout(0) callback'],
-    microtaskQueue: [],
-    taskQueue: [{ id: 't1', label: 'timeout(1000) -> "T1 ~1000ms" (waiting timer)' }],
-    output: ['Sync end (near 0ms)', 'Microtask (near 0ms)', 'T2 ~0ms'],
-  },
-  {
-    title: '1000ms timeout executes later',
-    explanation: 'Only after its timer threshold and an available stack turn does timeout(1000) run.',
-    stack: ['timeout(1000) callback'],
-    microtaskQueue: [],
-    taskQueue: [],
-    output: ['Sync end (near 0ms)', 'Microtask (near 0ms)', 'T2 ~0ms', 'T1 ~1000ms+'],
-  },
-];
-
-export const EventLoopSimpleDemo = () => (
-  <EventLoopSimulator
-    title="Simple Example"
-    subtitle="Synchronous logs vs Promise microtask vs setTimeout task"
-    code={`console.log('A');\n\nsetTimeout(() => {\n  console.log('B - timeout');\n}, 0);\n\nPromise.resolve().then(() => {\n  console.log('C - promise');\n});\n\nconsole.log('D');`}
-    expectedOrder={['A', 'D', 'C - promise', 'B - timeout']}
-    steps={simpleSteps}
-  />
-);
-
-export const EventLoopComplexDemo = () => (
-  <EventLoopSimulator
-    title="Complex Example"
-    subtitle="Nested microtasks and tasks with ordering across turns"
-    code={`console.log('1');\n\nsetTimeout(() => {\n  console.log('2 - timeout 1');\n\n  Promise.resolve().then(() => {\n    console.log('3 - microtask inside timeout');\n  });\n}, 0);\n\nPromise.resolve().then(() => {\n  console.log('4 - microtask 1');\n\n  setTimeout(() => {\n    console.log('5 - timeout inside microtask');\n  }, 0);\n});\n\nconsole.log('6');`}
-    expectedOrder={[
-      '1',
-      '6',
-      '4 - microtask 1',
-      '2 - timeout 1',
-      '3 - microtask inside timeout',
-      '5 - timeout inside microtask',
-    ]}
-    steps={complexSteps}
-  />
-);
-
-export const EventLoopTimeoutDemo = () => (
-  <EventLoopSimulator
-    title="Timeout Not Zero Example"
-    subtitle="Why setTimeout with 1000ms is a minimum delay, not exact timing"
-    code={`const start = Date.now();\n\nsetTimeout(() => {\n  console.log('T1 ~1000ms', Date.now() - start);\n}, 1000);\n\nsetTimeout(() => {\n  console.log('T2 ~0ms', Date.now() - start);\n}, 0);\n\nPromise.resolve().then(() => {\n  console.log('Microtask', Date.now() - start);\n});\n\nconsole.log('Sync end', Date.now() - start);`}
-    expectedOrder={['Sync end', 'Microtask', 'T2 ~0ms', 'T1 ~1000ms (or later)']}
-    steps={timeoutSteps}
-  />
-);
+export const EventLoopTimeoutDemo = () => <EventLoopSimulator {...timeoutScenario} />;
