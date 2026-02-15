@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-import MillionLint from '@million/lint';
+
 const nextConfig = {
   webpack(config) {
     // Grab the existing rule that handles SVG imports
@@ -46,4 +46,4 @@ const nextConfig = {
   },
 };
 
-export default MillionLint.next({ rsc: true })(nextConfig);
+export default nextConfig;

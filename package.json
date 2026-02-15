@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@million/lint": "^1.0.13",
     "@svgr/webpack": "^8.1.0",
     "lucide-react": "^0.445.0",
     "motion": "^12.10.5",
