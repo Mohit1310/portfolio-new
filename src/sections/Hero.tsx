@@ -15,9 +15,8 @@ export const HeroSection = () => {
               Memorable.
             </h1>
             <p className="mt-6 max-w-lg text-balance text-base leading-relaxed text-[var(--text-muted)] md:text-lg">
-              I design and build high-performance interfaces that feel cinematic,
-              intentional, and conversion-focused from first scroll to final
-              click.
+              I build clean, responsive interfaces with React and Next.js,
+              focusing on performance, usability, and polished visual detail.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-3">
               <a
@@ -56,7 +55,7 @@ export const HeroSection = () => {
               <div className="grid grid-cols-3 gap-3 text-center">
                 <div className="rounded-2xl border border-white/10 bg-black/30 px-2 py-4">
                   <p className="font-serif text-3xl text-[color:var(--accent-cyan)]">
-                    4+
+                    2+
                   </p>
                   <p className="mt-1 text-xs uppercase tracking-[0.15em] text-[var(--text-muted)]">
                     Years
@@ -64,18 +63,18 @@ export const HeroSection = () => {
                 </div>
                 <div className="rounded-2xl border border-white/10 bg-black/30 px-2 py-4">
                   <p className="font-serif text-3xl text-[color:var(--accent-lime)]">
-                    20+
+                    4
                   </p>
                   <p className="mt-1 text-xs uppercase tracking-[0.15em] text-[var(--text-muted)]">
-                    Launches
+                    Core Tools
                   </p>
                 </div>
                 <div className="rounded-2xl border border-white/10 bg-black/30 px-2 py-4">
                   <p className="font-serif text-3xl text-[color:var(--accent-orange)]">
-                    99%
+                    UI
                   </p>
                   <p className="mt-1 text-xs uppercase tracking-[0.15em] text-[var(--text-muted)]">
-                    Quality
+                    Craft Focus
                   </p>
                 </div>
               </div>

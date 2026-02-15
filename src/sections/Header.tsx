@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export const Header = () => {
   return (
     <header className="fixed top-0 z-40 w-full px-4 pt-4 md:px-8">
@@ -13,6 +15,9 @@ export const Header = () => {
             <a href="#about" className="nav-item hidden sm:inline-flex">
               About
             </a>
+            <Link href="/blog" className="nav-item hidden sm:inline-flex">
+              Blog
+            </Link>
             <a
               href="#contact"
               className="rounded-full border border-[color:var(--accent-lime)] bg-[color:var(--accent-lime)] px-4 py-2 text-sm font-semibold text-black transition hover:scale-[1.03]"
