@@ -2,11 +2,15 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const closeMenu = () => setIsMenuOpen(false);
+  const getSectionHref = (sectionId: string) =>
+    pathname === '/' ? `#${sectionId}` : `/#${sectionId}`;
 
   return (
     <header className="fixed top-0 z-40 w-full px-4 pt-4 md:px-8">
@@ -19,25 +23,25 @@ export const Header = () => {
       />
       <div className="container">
         <nav className="grid-shell relative z-20 mx-auto flex max-w-4xl items-center justify-between px-3 py-2 md:px-4">
-          <a href="#home" className="font-serif text-lg tracking-wide text-white">
+          <Link href={getSectionHref('home')} className="font-serif text-lg tracking-wide text-white">
             Mohit Dayma
-          </a>
+          </Link>
           <div className="hidden items-center gap-1 md:flex md:gap-2">
-            <a href="#projects" className="nav-item">
+            <Link href={getSectionHref('projects')} className="nav-item">
               Projects
-            </a>
-            <a href="#about" className="nav-item">
+            </Link>
+            <Link href={getSectionHref('about')} className="nav-item">
               About
-            </a>
+            </Link>
             <Link href="/blog" className="nav-item">
               Blog
             </Link>
-            <a
-              href="#contact"
+            <Link
+              href={getSectionHref('contact')}
               className="rounded-full border border-(--accent-lime) bg-(--accent-lime) px-4 py-2 text-sm font-semibold text-black transition hover:scale-[1.03]"
             >
               Contact
-            </a>
+            </Link>
           </div>
           <button
             type="button"
@@ -58,22 +62,30 @@ export const Header = () => {
             }`}
             aria-hidden={!isMenuOpen}
           >
-            <a href="#projects" className="nav-item flex w-full justify-center" onClick={closeMenu}>
+            <Link
+              href={getSectionHref('projects')}
+              className="nav-item flex w-full justify-center"
+              onClick={closeMenu}
+            >
               Projects
-            </a>
-            <a href="#about" className="nav-item mt-1 flex w-full justify-center" onClick={closeMenu}>
+            </Link>
+            <Link
+              href={getSectionHref('about')}
+              className="nav-item mt-1 flex w-full justify-center"
+              onClick={closeMenu}
+            >
               About
-            </a>
+            </Link>
             <Link href="/blog" className="nav-item mt-1 flex w-full justify-center" onClick={closeMenu}>
               Blog
             </Link>
-            <a
-              href="#contact"
+            <Link
+              href={getSectionHref('contact')}
               className="mt-2 inline-flex h-10 w-full items-center justify-center rounded-full border border-(--accent-lime) bg-(--accent-lime) px-4 text-sm font-semibold text-black transition hover:scale-[1.02]"
               onClick={closeMenu}
             >
               Contact
-            </a>
+            </Link>
           </div>
         </nav>
       </div>
