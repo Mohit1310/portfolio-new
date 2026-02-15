@@ -7,7 +7,7 @@ export const DemoCounter = () => {
 
   return (
     <div className="my-6 rounded-2xl border border-white/15 bg-black/25 p-4">
-      <p className="text-xs uppercase tracking-[0.14em] text-[var(--text-muted)]">
+      <p className="text-xs uppercase tracking-[0.14em] text-(--text-muted)">
         Interactive Demo
       </p>
       <p className="mt-2 text-base text-white">Clicks: {count}</p>
@@ -15,7 +15,7 @@ export const DemoCounter = () => {
         <button
           type="button"
           onClick={() => setCount((prev) => prev + 1)}
-          className="rounded-full bg-[color:var(--accent-cyan)] px-4 py-2 text-xs font-semibold text-black"
+          className="rounded-full bg-(--accent-cyan) px-4 py-2 text-xs font-semibold text-black"
         >
           Add
         </button>

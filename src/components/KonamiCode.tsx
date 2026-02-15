@@ -64,7 +64,7 @@ export default function KonamiCode() {
             <h2 className="text-2xl font-bold mb-4">You found the secret!</h2>
             <p>Here&apos;s a special message just for you:</p>
             <motion.p
-              className="text-3xl font-semibold mt-4 bg-clip-text text-transparent bg-[length:200%_auto] bg-gradient-to-r from-blue-500 to-red-500"
+              className="text-3xl font-semibold mt-4 bg-clip-text text-transparent bg-size-[200%_auto] bg-linear-to-r from-blue-500 to-red-500"
               animate={{
                 backgroundPosition: ['0% center', '200% center'],
               }}

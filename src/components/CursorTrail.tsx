@@ -41,7 +41,7 @@ export default function CursorTrail() {
   }, []);
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-[9999]">
+    <div className="pointer-events-none fixed inset-0 z-9999">
       {trail.map((dot, index) => (
         <motion.div
           key={index}

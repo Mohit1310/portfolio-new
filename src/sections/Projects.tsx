@@ -21,7 +21,7 @@ export const ProjectsSection = () => {
               className="grid-shell group grid gap-6 p-5 md:p-7 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8"
             >
               <div className="order-2 lg:order-1">
-                <p className="text-xs uppercase tracking-[0.2em] text-[var(--text-muted)]">
+                <p className="text-xs uppercase tracking-[0.2em] text-(--text-muted)">
                   {project.company} / {project.year} / {String(index + 1).padStart(2, '0')}
                 </p>
                 <h3 className="mt-3 font-serif text-3xl tracking-tight text-white md:text-4xl">
@@ -31,9 +31,9 @@ export const ProjectsSection = () => {
                   {project.results.map((result) => (
                     <li
                       key={result.title}
-                      className="flex items-start gap-2 text-sm leading-relaxed text-[var(--text-muted)] md:text-base"
+                      className="flex items-start gap-2 text-sm leading-relaxed text-(--text-muted) md:text-base"
                     >
-                      <CheckCircleIcon className="mt-0.5 size-5 shrink-0 text-[color:var(--accent-lime)]" />
+                      <CheckCircleIcon className="mt-0.5 size-5 shrink-0 text-(--accent-lime)" />
                       <span>{result.title}</span>
                     </li>
                   ))}
@@ -42,7 +42,7 @@ export const ProjectsSection = () => {
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-7 inline-flex h-11 items-center gap-2 rounded-full border border-[color:var(--accent-cyan)] px-5 text-sm font-semibold text-[color:var(--accent-cyan)] transition hover:bg-[color:var(--accent-cyan)] hover:text-black"
+                  className="mt-7 inline-flex h-11 items-center gap-2 rounded-full border border-(--accent-cyan) px-5 text-sm font-semibold text-(--accent-cyan) transition hover:bg-(--accent-cyan) hover:text-black"
                 >
                   View Live
                   <ArrowUpRight className="size-4" />

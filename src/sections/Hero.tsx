@@ -14,21 +14,21 @@ export const HeroSection = () => {
               <br />
               Memorable.
             </h1>
-            <p className="mt-6 max-w-lg text-balance text-base leading-relaxed text-[var(--text-muted)] md:text-lg">
+            <p className="mt-6 max-w-lg text-balance text-base leading-relaxed text-(--text-muted) md:text-lg">
               I build clean, responsive interfaces with React and Next.js,
               focusing on performance, usability, and polished visual detail.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-3">
               <a
                 href="#projects"
-                className="inline-flex h-12 items-center gap-2 rounded-full border border-white/20 px-6 text-sm font-semibold text-white transition hover:border-[color:var(--accent-cyan)] hover:text-[color:var(--accent-cyan)]"
+                className="inline-flex h-12 items-center gap-2 rounded-full border border-white/20 px-6 text-sm font-semibold text-white transition hover:border-(--accent-cyan) hover:text-(--accent-cyan)"
               >
                 Explore Projects
                 <ArrowDown className="size-4" />
               </a>
               <a
                 href="#contact"
-                className="inline-flex h-12 items-center rounded-full bg-[color:var(--accent-cyan)] px-6 text-sm font-semibold text-black transition hover:brightness-110"
+                className="inline-flex h-12 items-center rounded-full bg-(--accent-cyan) px-6 text-sm font-semibold text-black transition hover:brightness-110"
               >
                 Start a Project
               </a>
@@ -36,7 +36,7 @@ export const HeroSection = () => {
           </div>
           <div className="grid-shell relative p-6 md:p-8">
             <div className="flex items-center justify-between border-b border-white/10 pb-5">
-              <span className="text-xs uppercase tracking-[0.22em] text-[var(--text-muted)]">
+              <span className="text-xs uppercase tracking-[0.22em] text-(--text-muted)">
                 Live Signals
               </span>
               <span className="rounded-full border border-emerald-300/35 bg-emerald-300/15 px-3 py-1 text-xs text-emerald-200">
@@ -45,7 +45,7 @@ export const HeroSection = () => {
             </div>
             <div className="mt-6 space-y-5">
               <div>
-                <p className="text-xs uppercase tracking-[0.2em] text-[var(--text-muted)]">
+                <p className="text-xs uppercase tracking-[0.2em] text-(--text-muted)">
                   Focus
                 </p>
                 <p className="mt-2 text-lg font-semibold text-white md:text-xl">
@@ -54,26 +54,26 @@ export const HeroSection = () => {
               </div>
               <div className="grid grid-cols-3 gap-3 text-center">
                 <div className="rounded-2xl border border-white/10 bg-black/30 px-2 py-4">
-                  <p className="font-serif text-3xl text-[color:var(--accent-cyan)]">
+                  <p className="font-serif text-3xl text-(--accent-cyan)">
                     2+
                   </p>
-                  <p className="mt-1 text-xs uppercase tracking-[0.15em] text-[var(--text-muted)]">
+                  <p className="mt-1 text-xs uppercase tracking-[0.15em] text-(--text-muted)">
                     Years
                   </p>
                 </div>
                 <div className="rounded-2xl border border-white/10 bg-black/30 px-2 py-4">
-                  <p className="font-serif text-3xl text-[color:var(--accent-lime)]">
+                  <p className="font-serif text-3xl text-(--accent-lime)">
                     4
                   </p>
-                  <p className="mt-1 text-xs uppercase tracking-[0.15em] text-[var(--text-muted)]">
+                  <p className="mt-1 text-xs uppercase tracking-[0.15em] text-(--text-muted)">
                     Core Tools
                   </p>
                 </div>
                 <div className="rounded-2xl border border-white/10 bg-black/30 px-2 py-4">
-                  <p className="font-serif text-3xl text-[color:var(--accent-orange)]">
+                  <p className="font-serif text-3xl text-(--accent-orange)">
                     UI
                   </p>
-                  <p className="mt-1 text-xs uppercase tracking-[0.15em] text-[var(--text-muted)]">
+                  <p className="mt-1 text-xs uppercase tracking-[0.15em] text-(--text-muted)">
                     Craft Focus
                   </p>
                 </div>

@@ -14,12 +14,12 @@ export const AboutSection = () => {
         <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           <article className="grid-shell p-6 md:p-8">
             <h3 className="font-serif text-3xl text-white">How I work</h3>
-            <p className="mt-4 text-sm leading-relaxed text-[var(--text-muted)] md:text-base">
+            <p className="mt-4 text-sm leading-relaxed text-(--text-muted) md:text-base">
               I translate raw ideas into experiences people actually want to use.
               That means clean information architecture, expressive interfaces,
               and code that remains maintainable as products evolve.
             </p>
-            <p className="mt-4 text-sm leading-relaxed text-[var(--text-muted)] md:text-base">
+            <p className="mt-4 text-sm leading-relaxed text-(--text-muted) md:text-base">
               My standard stack is React and Next.js with TypeScript, backed by
               pragmatic design systems and performance budgets from day one.
             </p>
@@ -31,7 +31,7 @@ export const AboutSection = () => {
               {toolBoxItems.map((tool) => (
                 <span
                   key={tool.title}
-                  className="rounded-full border border-white/15 bg-black/25 px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-[var(--text-muted)]"
+                  className="rounded-full border border-white/15 bg-black/25 px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-(--text-muted)"
                 >
                   {tool.title}
                 </span>

@@ -6,9 +6,9 @@ interface CalloutProps extends PropsWithChildren {
 }
 
 const colorByType = {
-  info: 'border-[color:var(--accent-cyan)]/45 bg-[color:var(--accent-cyan)]/10 text-cyan-100',
+  info: 'border-(--accent-cyan)/45 bg-(--accent-cyan)/10 text-cyan-100',
   warning:
-    'border-[color:var(--accent-orange)]/50 bg-[color:var(--accent-orange)]/10 text-orange-100',
+    'border-(--accent-orange)/50 bg-(--accent-orange)/10 text-orange-100',
   success: 'border-emerald-300/45 bg-emerald-300/10 text-emerald-100',
 };
 

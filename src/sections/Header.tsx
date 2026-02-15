@@ -20,7 +20,7 @@ export const Header = () => {
             </Link>
             <a
               href="#contact"
-              className="rounded-full border border-[color:var(--accent-lime)] bg-[color:var(--accent-lime)] px-4 py-2 text-sm font-semibold text-black transition hover:scale-[1.03]"
+              className="rounded-full border border-(--accent-lime) bg-(--accent-lime) px-4 py-2 text-sm font-semibold text-black transition hover:scale-[1.03]"
             >
               Contact
             </a>

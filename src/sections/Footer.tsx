@@ -8,7 +8,7 @@ export const Footer = () => {
     <footer className="pb-8 pt-4">
       <div className="container">
         <div className="flex flex-col items-center justify-between gap-5 border-t border-white/10 pt-6 text-sm md:flex-row">
-          <p className="text-[var(--text-muted)]">© {year} Mohit Dayma</p>
+          <p className="text-(--text-muted)">© {year} Mohit Dayma</p>
           <nav className="flex flex-wrap items-center justify-center gap-5">
             {footerLinks.map((link) => (
               <a
@@ -16,7 +16,7 @@ export const Footer = () => {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-[var(--text-muted)] transition hover:text-white"
+                className="inline-flex items-center gap-1 text-(--text-muted) transition hover:text-white"
               >
                 <span className="font-semibold">{link.title}</span>
                 <ArrowUpRightIcon className="size-4" />

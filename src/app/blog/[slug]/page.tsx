@@ -54,11 +54,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <article className="grid-shell p-6 md:p-10">
           <Link
             href="/blog"
-            className="text-sm font-semibold text-[var(--text-muted)] transition hover:text-white"
+            className="text-sm font-semibold text-(--text-muted) transition hover:text-white"
           >
             ← Back to Blog
           </Link>
-          <p className="mt-5 text-xs uppercase tracking-[0.16em] text-[var(--text-muted)]">
+          <p className="mt-5 text-xs uppercase tracking-[0.16em] text-(--text-muted)">
             {formatDate(post.publishedAt)} • {post.readTime}
           </p>
           <h1 className="mt-3 max-w-4xl font-serif text-4xl text-white md:text-6xl">
@@ -68,7 +68,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             {post.tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full border border-white/15 bg-black/25 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--text-muted)]"
+                className="rounded-full border border-white/15 bg-black/25 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-(--text-muted)"
               >
                 {tag}
               </span>

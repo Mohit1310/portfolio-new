@@ -49,46 +49,46 @@ export const ContactSection = () => {
               <h2 className="mt-4 font-serif text-4xl leading-tight text-white md:text-5xl">
                 Ready to redesign your product edge?
               </h2>
-              <p className="mt-4 max-w-xl text-sm leading-relaxed text-[var(--text-muted)] md:text-base">
+              <p className="mt-4 max-w-xl text-sm leading-relaxed text-(--text-muted) md:text-base">
                 If you need a frontend that is fast, conversion-focused, and
                 visually distinct, I can help with design execution and
                 implementation from concept to launch.
               </p>
-              <p className="mt-4 inline-flex items-center gap-2 text-sm text-[var(--text-muted)]">
+              <p className="mt-4 inline-flex items-center gap-2 text-sm text-(--text-muted)">
                 Send project details with the form
                 <ArrowUpRightIcon className="size-4" />
               </p>
             </div>
 
             <form className="space-y-4" onSubmit={handleSubmit}>
-              <label className="block text-xs font-semibold uppercase tracking-[0.14em] text-[var(--text-muted)]">
+              <label className="block text-xs font-semibold uppercase tracking-[0.14em] text-(--text-muted)">
                 Name
                 <input
                   name="name"
                   required
-                  className="mt-2 w-full rounded-xl border border-white/15 bg-black/25 px-4 py-3 text-sm text-white outline-none transition focus:border-[color:var(--accent-cyan)]"
+                  className="mt-2 w-full rounded-xl border border-white/15 bg-black/25 px-4 py-3 text-sm text-white outline-hidden transition focus:border-(--accent-cyan)"
                   placeholder="Your name"
                 />
               </label>
 
-              <label className="block text-xs font-semibold uppercase tracking-[0.14em] text-[var(--text-muted)]">
+              <label className="block text-xs font-semibold uppercase tracking-[0.14em] text-(--text-muted)">
                 Mail
                 <input
                   name="email"
                   type="email"
                   required
-                  className="mt-2 w-full rounded-xl border border-white/15 bg-black/25 px-4 py-3 text-sm text-white outline-none transition focus:border-[color:var(--accent-cyan)]"
+                  className="mt-2 w-full rounded-xl border border-white/15 bg-black/25 px-4 py-3 text-sm text-white outline-hidden transition focus:border-(--accent-cyan)"
                   placeholder="you@example.com"
                 />
               </label>
 
-              <label className="block text-xs font-semibold uppercase tracking-[0.14em] text-[var(--text-muted)]">
+              <label className="block text-xs font-semibold uppercase tracking-[0.14em] text-(--text-muted)">
                 Description / Query
                 <textarea
                   name="message"
                   required
                   rows={4}
-                  className="mt-2 w-full resize-none rounded-xl border border-white/15 bg-black/25 px-4 py-3 text-sm text-white outline-none transition focus:border-[color:var(--accent-cyan)]"
+                  className="mt-2 w-full resize-none rounded-xl border border-white/15 bg-black/25 px-4 py-3 text-sm text-white outline-hidden transition focus:border-(--accent-cyan)"
                   placeholder="Tell me about your project or query"
                 />
               </label>
@@ -96,7 +96,7 @@ export const ContactSection = () => {
               <button
                 type="submit"
                 disabled={status === 'sending'}
-                className="inline-flex h-11 items-center rounded-full bg-[color:var(--accent-cyan)] px-6 text-sm font-semibold text-black transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70"
+                className="inline-flex h-11 items-center rounded-full bg-(--accent-cyan) px-6 text-sm font-semibold text-black transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {status === 'sending' ? 'Sending...' : 'Submit Query'}
               </button>
