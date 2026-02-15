@@ -3,17 +3,107 @@
 @tailwind utilities;
 
 @layer base {
+<<<<<<< Updated upstream
   .nav-item {
     @apply px-4 py-1.5 rounded-full text-white/70 text-sm font-semibold hover:bg-white/10 hover:text-white transition duration-300;
   }
 
   .hero-ring {
     @apply absolute inset-0 border-2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-emerald-300/5 shadow-[0_0_80px_inset] shadow-emerald-300/5;
+=======
+  :root {
+    --bg: #f8f4ee;
+    --surface: #fcfaf6;
+    --surface-strong: #f2ede4;
+    --text-primary: #191612;
+    --text-muted: #6f6659;
+    --line: #c7bba7;
+    --line-soft: #ddd3c4;
+    --accent: #b38a58;
+    --accent-soft: #dcc29c;
+    --ink: #23201c;
+  }
+
+  ::selection {
+    background: #b38a58;
+    color: #fcfaf6;
+  }
+
+  body {
+    background:
+      radial-gradient(circle at 8% -8%, #ffffff 0%, transparent 34%),
+      radial-gradient(circle at 92% 0%, #efe5d6 0%, transparent 28%),
+      var(--bg);
+    color: var(--text-primary);
+  }
+
+  .nav-item {
+    @apply px-3 py-2 text-xs md:text-sm font-medium uppercase tracking-[0.15em] relative;
+    color: var(--text-muted);
+  }
+
+  .nav-item::after {
+    content: '';
+    position: absolute;
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: 0.3rem;
+    height: 1px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 300ms ease;
+  }
+
+  .nav-item:hover {
+    color: var(--ink);
+>>>>>>> Stashed changes
+  }
+
+  .nav-item:hover::after {
+    transform: scaleX(1);
   }
 }
 
 @layer utilities {
   .container {
-    @apply lg:max-w-5xl;
+    @apply lg:max-w-6xl;
   }
+<<<<<<< Updated upstream
+=======
+
+  .paper-grid {
+    background-image:
+      linear-gradient(to right, #c7bba726 1px, transparent 1px),
+      linear-gradient(to bottom, #c7bba726 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .section-divider {
+    border-top: 1px solid var(--line-soft);
+  }
+
+  .label-gradient {
+    background: linear-gradient(90deg, #8f693a, #b38a58);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .luxury-frame {
+    border: 1px solid var(--line);
+    background: linear-gradient(140deg, #fcfaf6 0%, #f3ede4 100%);
+    box-shadow: 0 20px 50px -38px rgba(35, 30, 24, 0.45);
+  }
+
+  .micro-lift {
+    transition: transform 350ms ease, box-shadow 350ms ease, border-color 350ms ease;
+  }
+
+  .micro-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 36px -26px rgba(35, 30, 24, 0.35);
+    border-color: #b38a58;
+  }
+>>>>>>> Stashed changes
 }
