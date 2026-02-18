@@ -16,10 +16,20 @@ JavaScript runs on a single call stack, but async APIs make it feel concurrent. 
   Rule to remember: when the call stack becomes empty, JavaScript drains the microtask queue first, then runs one task from the task queue, then repeats.
 </Callout>
 
+## How JavaScript works (quick mental model)
+JavaScript runs in a top-down, sequential way because it is single-threaded in the main runtime. That means statements are executed one by one on the call stack.
+
+When async code is involved, the common execution pattern looks like:
+1. Synchronous code
+2. Promise callbacks (microtasks)
+3. Timeout and interval callbacks (tasks/macrotasks)
+
 ## The three building blocks
 - **Call Stack**: current execution context. Synchronous code runs here.
-- **Task Queue (Macrotask Queue)**: `setTimeout`, `setInterval`, DOM events, I/O callbacks.
-- **Microtask Queue**: `Promise.then/catch/finally`, `queueMicrotask`, `MutationObserver`.
+- **Task Queue (Macrotask Queue)**: a FIFO queue for `setTimeout`, `setInterval`, DOM events, and I/O callbacks.
+- **Microtask Queue**: a FIFO queue for `Promise.then/catch/finally`, `queueMicrotask`, and `MutationObserver`.
+
+The call stack itself behaves like **LIFO** (Last In, First Out), while both queues behave like **FIFO** (First In, First Out).
 
 ## Example 1: Simple ordering
 The code mixes sync logs, a Promise callback, and a `setTimeout(0)` callback.
