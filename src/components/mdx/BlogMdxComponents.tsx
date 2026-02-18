@@ -30,6 +30,26 @@ export const blogMdxComponents: MDXComponents = {
       {...props}
     />
   ),
+  pre: (props) => (
+    <pre
+      className="my-6 overflow-x-auto rounded-2xl border border-white/10 bg-slate-950/80 p-4 text-sm md:text-base"
+      {...props}
+    />
+  ),
+  code: ({ className, ...props }) => {
+    const isBlockCode = Boolean(className?.includes('language-'));
+
+    if (isBlockCode) {
+      return <code className={className} {...props} />;
+    }
+
+    return (
+      <code
+        className="rounded-md border border-white/15 bg-white/10 px-1.5 py-0.5 font-mono text-[0.88em] text-(--accent-cyan)"
+        {...props}
+      />
+    );
+  },
   Callout,
   EventLoopSimpleDemo,
   EventLoopComplexDemo,

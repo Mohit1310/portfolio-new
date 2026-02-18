@@ -157,4 +157,40 @@
     color: var(--text-primary);
     background: rgba(180, 255, 57, 0.13);
   }
+
+  .prose pre code {
+    display: block;
+    min-width: max-content;
+    background: transparent;
+    padding: 0;
+    color: #e2e8f0;
+  }
+
+  .prose .hljs {
+    color: #e2e8f0;
+  }
+
+  .prose .hljs-keyword,
+  .prose .hljs-selector-tag,
+  .prose .hljs-title.function_ {
+    color: #7dd3fc;
+  }
+
+  .prose .hljs-string,
+  .prose .hljs-title.class_,
+  .prose .hljs-regexp {
+    color: #bef264;
+  }
+
+  .prose .hljs-number,
+  .prose .hljs-literal,
+  .prose .hljs-symbol,
+  .prose .hljs-variable.constant_ {
+    color: #fdba74;
+  }
+
+  .prose .hljs-comment,
+  .prose .hljs-quote {
+    color: #94a3b8;
+  }
 }

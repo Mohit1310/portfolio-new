@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { notFound } from 'next/navigation';
+import rehypeHighlight from 'rehype-highlight';
 import { blogMdxComponents } from '@/components/mdx/BlogMdxComponents';
 import { Header } from '@/sections/Header';
 import { getAllPosts, getPostBySlug } from '@/utils/blogs';
@@ -76,7 +77,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
 
           <div className="prose prose-invert mt-8 max-w-none space-y-5">
-            <MDXRemote source={post.content} components={blogMdxComponents} />
+            <MDXRemote
+              source={post.content}
+              components={blogMdxComponents}
+              options={{
+                mdxOptions: {
+                  rehypePlugins: [rehypeHighlight],
+                },
+              }}
+            />
           </div>
 
           {(previousPost || nextPost) && (
