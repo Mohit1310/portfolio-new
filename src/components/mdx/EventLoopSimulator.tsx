@@ -1,7 +1,8 @@
 'use client';
 
 import { AnimatePresence, motion } from 'motion/react';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { OutputPanel } from './event-loop/OutputPanel';
 import { QueueCard } from './event-loop/QueueCard';
 import { complexScenario } from './event-loop/scenarios/complexScenario';
 import { simpleScenario } from './event-loop/scenarios/simpleScenario';
@@ -21,11 +22,6 @@ export const EventLoopSimulator = ({
   const [isAutoplay, setIsAutoplay] = useState(false);
   const currentStep = steps[stepIndex];
   const isLastStep = stepIndex === steps.length - 1;
-
-  const orderPreview = useMemo(
-    () => expectedOrder.map((entry, index) => `${index + 1}. ${entry}`).join('\n'),
-    [expectedOrder]
-  );
 
   const canGoBack = stepIndex > 0;
   const canGoNext = !isLastStep;
@@ -101,13 +97,8 @@ export const EventLoopSimulator = ({
           </pre>
         </div>
 
-        <div className="rounded-xl border border-white/10 bg-black/25 p-3">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-(--text-muted)">
-            Expected Console Order
-          </p>
-          <pre className="mt-2 whitespace-pre-wrap text-xs leading-relaxed text-white/90 md:text-sm">
-            {orderPreview}
-          </pre>
+        <div>
+          <OutputPanel expectedOrder={expectedOrder} />
         </div>
       </div>
 
