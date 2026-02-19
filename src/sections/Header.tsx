@@ -38,7 +38,7 @@ export const Header = () => {
             </Link>
             <Link
               href={getSectionHref('contact')}
-              className="rounded-full border border-(--accent-lime) bg-(--accent-lime) px-4 py-2 text-sm font-semibold text-black transition hover:scale-[1.03]"
+              className="rounded-full border border-(--accent-lime) bg-(--accent-lime) px-4 py-2 text-sm font-semibold text-black transition"
             >
               Contact
             </Link>
@@ -81,7 +81,7 @@ export const Header = () => {
             </Link>
             <Link
               href={getSectionHref('contact')}
-              className="mt-2 inline-flex h-10 w-full items-center justify-center rounded-full border border-(--accent-lime) bg-(--accent-lime) px-4 text-sm font-semibold text-black transition hover:scale-[1.02]"
+              className="mt-2 inline-flex h-10 w-full items-center justify-center rounded-full border border-(--accent-lime) bg-(--accent-lime) px-4 text-sm font-semibold text-black transition"
               onClick={closeMenu}
             >
               Contact

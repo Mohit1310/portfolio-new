@@ -23,7 +23,7 @@ export default function BlogPage() {
     <main className="min-h-screen pb-14 pt-28 md:pt-32">
       <Header />
       <div className="container">
-        <div className="grid-shell mb-10 p-6 md:p-9">
+        {/* <div className="grid-shell mb-10 p-6 md:p-9">
           <p className="section-kicker">Blog</p>
           <h1 className="mt-4 font-serif text-4xl text-white md:text-6xl">
             Insights on frontend craft
@@ -32,11 +32,11 @@ export default function BlogPage() {
             Practical notes from shipping performant interfaces, refining UX, and
             maintaining quality at scale.
           </p>
-        </div>
+        </div> */}
 
         <div className="space-y-5">
           {posts.map((post) => (
-            <article key={post.slug} className="grid-shell p-6 md:p-7">
+            <Link href={`/blog/${post.slug}`} key={post.slug} className="grid-shell p-6 md:p-7 block group cursor-pointer hover:border-(--accent-cyan) transition-colors duration-300">
               <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.14em] text-(--text-muted)">
                 <span>{formatDate(post.publishedAt)}</span>
                 <span>•</span>
@@ -58,14 +58,13 @@ export default function BlogPage() {
                   </span>
                 ))}
               </div>
-              <Link
-                href={`/blog/${post.slug}`}
-                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-(--accent-cyan) transition hover:opacity-80"
+              <div
+                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-(--accent-cyan) transition group-hover:opacity-80"
               >
                 Read article
-                <ArrowUpRightIcon className="size-4" />
-              </Link>
-            </article>
+                <ArrowUpRightIcon className="size-4 group-hover:rotate-45 transition-transform duration-300" />
+              </div>
+            </Link>
           ))}
         </div>
       </div>
