@@ -1,7 +1,3 @@
-import bugbookLandingPage from '@/assets/images/bugbook-landing-page.png';
-import netflixLandingPage from '@/assets/images/netflix-landing-page.png';
-import youtubeLandingPage from '@/assets/images/youtube-landing-page.png';
-
 export const portfolioProjects = [
   {
     company: 'Project',
@@ -22,7 +18,6 @@ export const portfolioProjects = [
       },
     ],
     link: 'https://bugbook-62ez.vercel.app/',
-    image: bugbookLandingPage,
   },
   {
     company: 'Project',
@@ -43,7 +38,6 @@ export const portfolioProjects = [
       },
     ],
     link: 'https://nettflixgpt.netlify.app',
-    image: netflixLandingPage,
   },
   {
     company: 'Project',
@@ -64,7 +58,6 @@ export const portfolioProjects = [
       },
     ],
     link: 'https://advancedyoutube.netlify.app',
-    image: youtubeLandingPage,
   },
 ];
 
