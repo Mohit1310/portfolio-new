@@ -1,52 +1,30 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 
-interface ContactPayload {
-  name?: string;
-  email?: string;
-  message?: string;
-}
+export async function POST(req: Request) {
+	const body = await req.json();
 
-const MAX_TEXT = 2000;
+	const transporter = nodemailer.createTransport({
+		host: process.env.SMTP_HOST,
+		port: 587,
+		secure: false,
+		auth: {
+			user: process.env.SMTP_USER,
+			pass: process.env.SMTP_PASS,
+		},
+	});
 
-export async function POST(request: Request) {
-  try {
-    const body = (await request.json()) as ContactPayload;
-    const name = (body.name || '').trim();
-    const email = (body.email || '').trim();
-    const message = (body.message || '').trim();
+	const response = await transporter.sendMail({
+		from: "Nandini Textile",
+		replyTo: body.email,
+		to: process.env.SMTP_USER,
+		subject: "Portfolio Message",
+		html: `
+			<p><strong>Name:</strong> ${body.name}</p>
+			<p><strong>Email:</strong> ${body.email}</p>
+			<p><strong>Message:</strong><br/>${body.message}</p>
+		`,
+	});
 
-    if (!name || !email || !message) {
-      return NextResponse.json(
-        { error: 'Name, email, and description/query are required.' },
-        { status: 400 }
-      );
-    }
-
-    if (name.length > 120 || email.length > 320 || message.length > MAX_TEXT) {
-      return NextResponse.json(
-        { error: 'Input exceeds allowed length.' },
-        { status: 400 }
-      );
-    }
-
-    const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    if (!emailValid) {
-      return NextResponse.json({ error: 'Invalid email format.' }, { status: 400 });
-    }
-
-    // Placeholder server handling. Replace this with email/DB integration.
-    console.log('Contact form submission', {
-      name,
-      email,
-      message,
-      at: new Date().toISOString(),
-    });
-
-    return NextResponse.json({ ok: true });
-  } catch {
-    return NextResponse.json(
-      { error: 'Unable to process your request.' },
-      { status: 500 }
-    );
-  }
+	return NextResponse.json({ success: true });
 }
