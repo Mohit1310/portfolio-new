@@ -52,8 +52,8 @@ export default function NotFound() {
         </p>
       </div>
       {isFixed && (
-        <div className="text-center mb-8 animate-bounce">
-          <Cpu className="text-4xl text-blue-500 mb-2" />
+        <div className="text-center mb-8 animate-bounce flex gap-2">
+          <Cpu className="text-4xl text-(--accent-cyan) mb-2" />
           <p className="text-gray-400">
             Error fixed! But the page is still missing...
           </p>
@@ -61,7 +61,7 @@ export default function NotFound() {
       )}
       <Link
         href="/"
-        className="px-6 py-3 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-colors text-lg font-semibold shadow-lg hover:shadow-xl"
+        className="px-6 py-3 bg-(--accent-cyan) text-black rounded-full hover:bg-(--accent-cyan)/80 transition-colors text-lg font-semibold shadow-lg hover:shadow-xl"
       >
         Back to Portfolio
       </Link>
