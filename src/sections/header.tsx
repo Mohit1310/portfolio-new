@@ -48,7 +48,7 @@ export const Header = () => {
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
             aria-label="Toggle navigation menu"
-            className="inline-flex h-10 items-center justify-center rounded-full border border-white/20 px-4 text-sm font-semibold text-white transition hover:border-color(--accent-cyan) hover:text-color(--accent-cyan) md:hidden"
+            className="inline-flex h-10 items-center justify-center rounded-full border border-white/20 px-4 text-sm font-semibold text-white transition hover:border-(--accent-cyan) hover:text-(--accent-cyan) md:hidden"
             onClick={() => setIsMenuOpen((current) => !current)}
           >
             {isMenuOpen ? 'Close' : 'Menu'}
@@ -60,7 +60,7 @@ export const Header = () => {
                 ? 'pointer-events-auto translate-y-0 scale-100 opacity-100'
                 : 'pointer-events-none -translate-y-2 scale-95 opacity-0'
             }`}
-            aria-hidden={!isMenuOpen}
+            inert={!isMenuOpen}
           >
             <Link
               href={getSectionHref('projects')}

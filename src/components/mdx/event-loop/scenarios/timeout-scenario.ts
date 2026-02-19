@@ -53,7 +53,7 @@ export const timeoutScenario: EventLoopScenario = {
         { id: 't1', label: 'timeout(1000) -> "T1 ~1000ms" (waiting timer)' },
         { id: 't2', label: 'timeout(0) -> "T2 ~0ms"' },
       ],
-      output: ['Sync end (near 0ms)'],
+      output: ['Sync end'],
     },
     {
       title: 'Microtask runs first',
@@ -64,7 +64,7 @@ export const timeoutScenario: EventLoopScenario = {
         { id: 't1', label: 'timeout(1000) -> "T1 ~1000ms" (waiting timer)' },
         { id: 't2', label: 'timeout(0) -> "T2 ~0ms"' },
       ],
-      output: ['Sync end (near 0ms)', 'Microtask (near 0ms)'],
+      output: ['Sync end', 'Microtask'],
     },
     {
       title: '0ms timeout executes next',
@@ -72,7 +72,7 @@ export const timeoutScenario: EventLoopScenario = {
       stack: ['timeout(0) callback'],
       microtaskQueue: [],
       taskQueue: [{ id: 't1', label: 'timeout(1000) -> "T1 ~1000ms" (waiting timer)' }],
-      output: ['Sync end (near 0ms)', 'Microtask (near 0ms)', 'T2 ~0ms'],
+      output: ['Sync end', 'Microtask', 'T2 ~0ms'],
     },
     {
       title: '1000ms timeout executes later',
@@ -81,7 +81,7 @@ export const timeoutScenario: EventLoopScenario = {
       stack: ['timeout(1000) callback'],
       microtaskQueue: [],
       taskQueue: [],
-      output: ['Sync end (near 0ms)', 'Microtask (near 0ms)', 'T2 ~0ms', 'T1 ~1000ms+'],
+      output: ['Sync end', 'Microtask', 'T2 ~0ms', 'T1 ~1000ms (or later)'],
     },
   ],
 };

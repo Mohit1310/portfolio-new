@@ -20,7 +20,7 @@ export const QueueCard = ({ title, items, emptyLabel }: QueueCardProps) => {
             items.map((item, index) => (
               <motion.div
                 layout
-                key={`${title}-${item}-${index}`}
+                key={`${title}-${item}`}
                 initial={{ opacity: 0, y: 10, scale: 0.98 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -10, scale: 0.98 }}

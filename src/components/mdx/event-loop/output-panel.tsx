@@ -26,6 +26,7 @@ export const OutputPanel = ({ expectedOrder }: OutputPanelProps) => {
         <div className="inline-flex rounded-full border border-white/15 bg-black/35 p-0.5">
           <button
             type="button"
+            aria-pressed={isPractice}
             onClick={() => setMode('practice')}
             className={`rounded-full px-3 py-1 text-[11px] font-semibold transition ${
               isPractice
@@ -37,6 +38,7 @@ export const OutputPanel = ({ expectedOrder }: OutputPanelProps) => {
           </button>
           <button
             type="button"
+            aria-pressed={!isPractice}
             onClick={() => setMode('expected')}
             className={`rounded-full px-3 py-1 text-[11px] font-semibold transition ${
               !isPractice

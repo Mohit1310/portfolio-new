@@ -3,6 +3,7 @@
 @utility container {
   margin-inline: auto;
   padding-inline: 1rem;
+  @apply max-w-full lg:max-w-6xl;
   @media (width >= theme(--breakpoint-md)) {
     padding-inline: 2rem;
   }
@@ -70,9 +71,7 @@
   background: color-mix(in oklab, var(--accent-cyan) 8%, transparent);
 }
 
-@utility container {
-  @apply max-w-full lg:max-w-6xl;
-}
+
 
 @layer utilities {
   :root {

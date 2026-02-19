@@ -20,8 +20,8 @@ export const EventLoopSimulator = ({
 }: EventLoopSimulatorProps) => {
   const [stepIndex, setStepIndex] = useState(0);
   const [isAutoplay, setIsAutoplay] = useState(false);
-  const currentStep = steps[stepIndex];
-  const isLastStep = stepIndex === steps.length - 1;
+  const currentStep = steps.length > 0 ? steps[stepIndex] : null;
+  const isLastStep = steps.length === 0 || stepIndex === steps.length - 1;
 
   const canGoBack = stepIndex > 0;
   const canGoNext = !isLastStep;
@@ -68,6 +68,11 @@ export const EventLoopSimulator = ({
   };
 
   const toggleAutoplay = () => {
+    if (steps.length === 0) {
+      setIsAutoplay(false);
+      return;
+    }
+
     if (!isAutoplay && isLastStep) {
       setStepIndex(0);
       setIsAutoplay(true);
@@ -76,6 +81,23 @@ export const EventLoopSimulator = ({
 
     setIsAutoplay((prev) => !prev);
   };
+
+  if (!currentStep) {
+    return (
+      <section className="my-8 overflow-hidden rounded-3xl border border-white/10 bg-black/35">
+        <div className="border-b border-white/10 p-4 md:p-5">
+          <p className="text-xs uppercase tracking-[0.14em] text-(--text-muted)">
+            Interactive Event Loop Demo
+          </p>
+          <h4 className="mt-1 text-lg font-semibold text-white md:text-xl">{title}</h4>
+          <p className="mt-1 text-sm text-(--text-muted)">{subtitle}</p>
+        </div>
+        <div className="p-4 text-center text-sm text-(--text-muted) md:p-5">
+          No steps available for this scenario.
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="my-8 overflow-hidden rounded-3xl border border-white/10 bg-black/35">

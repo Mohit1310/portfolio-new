@@ -77,7 +77,7 @@ export const complexScenario: EventLoopScenario = {
       title: 'First task executes',
       explanation: 'timeout 1 callback logs "2 - timeout 1".',
       stack: ['timeout 1 callback'],
-      microtaskQueue: [],
+      microtaskQueue: [{ id: 'm2', label: 'microtask from timeout 1 -> "3 - microtask inside timeout"' }],
       taskQueue: [{ id: 't2', label: 'timeout 2 -> "5 - timeout inside microtask"' }],
       output: ['1', '6', '4 - microtask 1', '2 - timeout 1'],
     },

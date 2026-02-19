@@ -1,4 +1,4 @@
-import { ArrowDownIcon } from 'lucide-react';
+import { ArrowDown } from 'lucide-react';
 
 export const HeroSection = () => {
   return (
@@ -24,7 +24,7 @@ export const HeroSection = () => {
                 className="inline-flex h-12 items-center gap-2 rounded-full border border-white/20 px-6 text-sm font-semibold text-white transition hover:border-(--accent-cyan) hover:text-(--accent-cyan)"
               >
                 Explore Projects
-                <ArrowDownIcon className="size-4" />
+                <ArrowDown className="size-4" aria-hidden="true" focusable="false" />
               </a>
               <a
                 href="#contact"

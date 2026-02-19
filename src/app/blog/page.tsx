@@ -14,6 +14,7 @@ const formatDate = (date: string) =>
     year: 'numeric',
     month: 'short',
     day: 'numeric',
+    timeZone: 'UTC',
   }).format(new Date(date));
 
 export default function BlogPage() {
