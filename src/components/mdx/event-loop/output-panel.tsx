@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { OutputQuiz } from './OutputQuiz';
+import { OutputQuiz } from './output-quiz';
 
 interface OutputPanelProps {
   expectedOrder: string[];

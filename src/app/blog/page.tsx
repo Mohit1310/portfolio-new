@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowUpRightIcon } from 'lucide-react';
-import { Header } from '@/sections/Header';
+import { Header } from '@/sections/header';
 import { getAllPosts } from '@/utils/blogs';
 
 export const metadata: Metadata = {

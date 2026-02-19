@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { notFound } from 'next/navigation';
 import rehypeHighlight from 'rehype-highlight';
-import { blogMdxComponents } from '@/components/mdx/BlogMdxComponents';
-import { Header } from '@/sections/Header';
+import { blogMdxComponents } from '@/components/mdx/blog-mdx-components';
+import { Header } from '@/sections/header';
 import { getAllPosts, getPostBySlug } from '@/utils/blogs';
 
 interface BlogPostPageProps {

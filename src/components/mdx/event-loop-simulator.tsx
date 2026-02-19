@@ -2,11 +2,11 @@
 
 import { AnimatePresence, motion } from 'motion/react';
 import { useEffect, useState } from 'react';
-import { OutputPanel } from './event-loop/OutputPanel';
-import { QueueCard } from './event-loop/QueueCard';
-import { complexScenario } from './event-loop/scenarios/complexScenario';
-import { simpleScenario } from './event-loop/scenarios/simpleScenario';
-import { timeoutScenario } from './event-loop/scenarios/timeoutScenario';
+import { OutputPanel } from './event-loop/output-panel';
+import { QueueCard } from './event-loop/queue-card';
+import { complexScenario } from './event-loop/scenarios/complex-scenario';
+import { simpleScenario } from './event-loop/scenarios/simple-scenario';
+import { timeoutScenario } from './event-loop/scenarios/timeout-scenario';
 import type { EventLoopSimulatorProps } from './event-loop/types';
 
 const AUTOPLAY_INTERVAL_MS = 1200;

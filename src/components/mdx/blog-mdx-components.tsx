@@ -1,10 +1,10 @@
 import type { MDXComponents } from 'mdx/types';
-import { Callout } from './Callout';
+import { Callout } from './callout';
 import {
   EventLoopComplexDemo,
   EventLoopSimpleDemo,
   EventLoopTimeoutDemo,
-} from './EventLoopSimulator';
+} from './event-loop-simulator';
 
 export const blogMdxComponents: MDXComponents = {
   h2: (props) => (
