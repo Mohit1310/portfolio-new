@@ -8,31 +8,32 @@ import {
 
 export const blogMdxComponents: MDXComponents = {
   h2: (props) => (
-    <h2 className="pt-4 font-serif text-2xl text-white md:text-3xl" {...props} />
+    <h2 className="mt-10 text-2xl font-medium tracking-tight first:mt-0 md:text-3xl" {...props} />
   ),
   h3: (props) => (
-    <h3 className="pt-2 text-xl font-semibold text-white" {...props} />
+    <h3 className="mt-8 text-xl font-medium tracking-tight" {...props} />
   ),
   p: (props) => (
-    <p className="text-base leading-relaxed text-(--text-muted) md:text-lg" {...props} />
+    <p className="mt-5 leading-relaxed text-(--text-muted)" {...props} />
   ),
-  ul: (props) => <ul className="list-disc space-y-2 pl-6" {...props} />,
-  li: (props) => <li className="text-(--text-muted)" {...props} />,
+  ul: (props) => <ul className="mt-5 list-disc space-y-2 pl-6" {...props} />,
+  ol: (props) => <ol className="mt-5 list-decimal space-y-2 pl-6" {...props} />,
+  li: (props) => <li className="leading-relaxed text-(--text-muted)" {...props} />,
   a: (props) => (
-    <a
-      className="font-semibold text-(--accent-cyan) underline decoration-white/20 underline-offset-4"
-      {...props}
-    />
+    <a className="font-medium underline underline-offset-4 hover:opacity-80" {...props} />
+  ),
+  strong: (props) => (
+    <strong className="font-medium text-(--text-primary)" {...props} />
   ),
   blockquote: (props) => (
     <blockquote
-      className="my-6 border-l-2 border-(--accent-cyan) pl-4 italic text-white/80"
+      className="mt-6 border-l-2 border-(--line-strong) pl-5 text-(--text-muted)"
       {...props}
     />
   ),
   pre: (props) => (
     <pre
-      className="my-6 overflow-x-auto rounded-2xl border border-white/10 bg-slate-950/80 p-4 text-sm md:text-base"
+      className="mt-6 overflow-x-auto rounded-md border border-(--line) bg-(--surface) p-4 font-mono text-sm leading-relaxed"
       {...props}
     />
   ),
@@ -45,7 +46,7 @@ export const blogMdxComponents: MDXComponents = {
 
     return (
       <code
-        className="rounded-md border border-white/15 bg-white/10 px-1.5 py-0.5 font-mono text-[0.88em] text-(--accent-cyan)"
+        className="rounded border border-(--line) bg-(--surface) px-1.5 py-0.5 font-mono text-[0.85em]"
         {...props}
       />
     );

@@ -55,28 +55,23 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   return (
-    <main className="min-h-screen pb-14 pt-28 md:pt-32">
+    <main className="min-h-screen">
       <Header />
-      <div className="container">
-        <article className="grid-shell p-6 md:p-10">
-          <p className="text-xs uppercase tracking-[0.16em] text-(--text-muted)">
-            {formatDate(post.publishedAt)} • {post.readTime}
+      <div className="container py-16 md:py-24">
+        <article className="mx-auto max-w-3xl">
+          <p className="font-mono text-sm text-(--text-muted)">
+            {formatDate(post.publishedAt)} · {post.readTime}
           </p>
-          <h1 className="mt-3 max-w-4xl font-serif text-4xl text-white md:text-6xl">
+          <h1 className="mt-4 text-3xl font-medium tracking-tight md:text-5xl">
             {post.title}
           </h1>
-          <div className="mt-5 flex flex-wrap gap-2">
-            {post.tags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full border border-white/15 bg-black/25 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-(--text-muted)"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
+          {post.tags.length > 0 && (
+            <p className="mt-5 font-mono text-xs text-(--text-muted)">
+              {post.tags.join(' · ')}
+            </p>
+          )}
 
-          <div className="prose prose-invert mt-8 max-w-none space-y-5">
+          <div className="mt-10">
             <MDXRemote
               source={post.content}
               components={blogMdxComponents}
@@ -89,39 +84,31 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
 
           {(previousPost || nextPost) && (
-            <div className="mt-10 grid gap-3 border-t border-white/10 pt-6 md:grid-cols-2">
+            <nav className="mt-16 grid gap-8 border-t border-(--line) pt-8 sm:grid-cols-2">
               {previousPost ? (
-                <Link
-                  href={`/blog/${previousPost.slug}`}
-                  className="rounded-2xl border border-white/10 bg-black/25 p-4 transition hover:border-white/25"
-                >
-                  <p className="text-xs uppercase tracking-[0.14em] text-(--text-muted)">
-                    Previous Article
-                  </p>
-                  <p className="mt-2 text-lg font-semibold text-white">
+                <Link href={`/blog/${previousPost.slug}`} className="group">
+                  <p className="text-sm text-(--text-muted)">Previous article</p>
+                  <p className="mt-2 font-medium underline-offset-4 group-hover:underline">
                     {previousPost.title}
                   </p>
                 </Link>
               ) : (
-                <div />
+                <span />
               )}
-
               {nextPost ? (
                 <Link
                   href={`/blog/${nextPost.slug}`}
-                  className="rounded-2xl border border-white/10 bg-black/25 p-4 text-right transition hover:border-white/25"
+                  className="group text-right"
                 >
-                  <p className="text-xs uppercase tracking-[0.14em] text-(--text-muted)">
-                    Next Article
-                  </p>
-                  <p className="mt-2 text-lg font-semibold text-white">
+                  <p className="text-sm text-(--text-muted)">Next article</p>
+                  <p className="mt-2 font-medium underline-offset-4 group-hover:underline">
                     {nextPost.title}
                   </p>
                 </Link>
               ) : (
-                <div />
+                <span />
               )}
-            </div>
+            </nav>
           )}
         </article>
       </div>

@@ -3,41 +3,40 @@ import { toolBoxItems } from '@/utils/constants';
 
 export const AboutSection = () => {
   return (
-    <section id="about" className="py-16 md:py-24">
-      <div className="container">
+    <section id="about" className="border-t border-(--line)">
+      <div className="container py-16 md:py-24">
         <SectionHeader
-          eyebrow="About"
-          title="Builder mindset with product discipline"
-          description="I approach frontend as a system where visual design, accessibility, and performance are all first-class requirements."
+          title="A builder with product discipline"
+          description="I treat frontend as a system where visual design, accessibility, and performance are first-class requirements, not afterthoughts."
         />
 
-        <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-          <article className="grid-shell p-6 md:p-8">
-            <h3 className="font-serif text-3xl text-white">How I work</h3>
-            <p className="mt-4 text-sm leading-relaxed text-(--text-muted) md:text-base">
-              I translate raw ideas into experiences people actually want to use.
-              That means clean information architecture, expressive interfaces,
-              and code that remains maintainable as products evolve.
+        <div className="mt-12 grid gap-12 md:grid-cols-2 md:gap-20">
+          <div>
+            <h3 className="text-lg font-medium tracking-tight">How I work</h3>
+            <p className="mt-4 max-w-md leading-relaxed text-(--text-muted)">
+              I translate raw ideas into experiences people actually want to
+              use: clean information architecture, expressive interfaces, and
+              code that stays maintainable as products evolve.
             </p>
-            <p className="mt-4 text-sm leading-relaxed text-(--text-muted) md:text-base">
+            <p className="mt-4 max-w-md leading-relaxed text-(--text-muted)">
               My standard stack is React and Next.js with TypeScript, backed by
               pragmatic design systems and performance budgets from day one.
             </p>
-          </article>
+          </div>
 
-          <article className="grid-shell p-6 md:p-8">
-            <h3 className="font-serif text-3xl text-white">Tooling</h3>
-            <div className="mt-5 flex flex-wrap gap-2">
+          <div>
+            <h3 className="text-lg font-medium tracking-tight">Tooling</h3>
+            <ul className="mt-4 grid grid-cols-2 gap-x-6">
               {toolBoxItems.map((tool) => (
-                <span
+                <li
                   key={tool.title}
-                  className="rounded-full border border-white/15 bg-black/25 px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-(--text-muted)"
+                  className="border-b border-(--line) py-3 font-mono text-sm"
                 >
                   {tool.title}
-                </span>
+                </li>
               ))}
-            </div>
-          </article>
+            </ul>
+          </div>
         </div>
       </div>
     </section>

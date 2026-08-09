@@ -84,12 +84,14 @@ export const EventLoopSimulator = ({
 
   if (!currentStep) {
     return (
-      <section className="my-8 overflow-hidden rounded-3xl border border-white/10 bg-black/35">
-        <div className="border-b border-white/10 p-4 md:p-5">
-          <p className="text-xs uppercase tracking-[0.14em] text-(--text-muted)">
-            Interactive Event Loop Demo
+      <section className="my-8 overflow-hidden rounded-lg border border-(--line)">
+        <div className="border-b border-(--line) p-4 md:p-5">
+          <p className="text-xs font-medium text-(--text-muted)">
+            Interactive event loop demo
           </p>
-          <h4 className="mt-1 text-lg font-semibold text-white md:text-xl">{title}</h4>
+          <h4 className="mt-1 text-lg font-medium tracking-tight md:text-xl">
+            {title}
+          </h4>
           <p className="mt-1 text-sm text-(--text-muted)">{subtitle}</p>
         </div>
         <div className="p-4 text-center text-sm text-(--text-muted) md:p-5">
@@ -100,21 +102,23 @@ export const EventLoopSimulator = ({
   }
 
   return (
-    <section className="my-8 overflow-hidden rounded-3xl border border-white/10 bg-black/35">
-      <div className="border-b border-white/10 p-4 md:p-5">
-        <p className="text-xs uppercase tracking-[0.14em] text-(--text-muted)">
-          Interactive Event Loop Demo
+    <section className="my-8 overflow-hidden rounded-lg border border-(--line)">
+      <div className="border-b border-(--line) p-4 md:p-5">
+        <p className="text-xs font-medium text-(--text-muted)">
+          Interactive event loop demo
         </p>
-        <h4 className="mt-1 text-lg font-semibold text-white md:text-xl">{title}</h4>
+        <h4 className="mt-1 text-lg font-medium tracking-tight md:text-xl">
+          {title}
+        </h4>
         <p className="mt-1 text-sm text-(--text-muted)">{subtitle}</p>
       </div>
 
       <div className="grid gap-4 p-4 md:grid-cols-2 md:gap-5 md:p-5">
-        <div className="rounded-xl border border-white/10 bg-black/25 p-3">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-(--text-muted)">
+        <div className="rounded-md border border-(--line) bg-(--surface) p-3">
+          <p className="text-[11px] font-semibold text-(--text-muted)">
             Code
           </p>
-          <pre className="mt-2 overflow-x-auto text-xs leading-relaxed text-white/90 md:text-sm">
+          <pre className="mt-2 overflow-x-auto text-xs leading-relaxed md:text-sm">
             <code>{code}</code>
           </pre>
         </div>
@@ -124,7 +128,7 @@ export const EventLoopSimulator = ({
         </div>
       </div>
 
-      <div className="border-y border-white/10 bg-black/25 p-4 md:p-5">
+      <div className="border-y border-(--line) bg-(--surface) p-4 md:p-5">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <AnimatePresence mode="wait" initial={false}>
             <motion.p
@@ -133,17 +137,17 @@ export const EventLoopSimulator = ({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.22, ease: 'easeOut' }}
-              className="text-sm font-semibold text-white"
+              className="text-sm font-medium"
             >
               Step {stepIndex + 1} / {steps.length}: {currentStep.title}
             </motion.p>
           </AnimatePresence>
 
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <button
               type="button"
               onClick={handleReset}
-              className="rounded-full border border-white/15 px-3 py-1.5 text-xs font-semibold text-white disabled:cursor-not-allowed disabled:opacity-45"
+              className="rounded-md border border-(--line-strong) px-3 py-1.5 text-xs font-medium disabled:cursor-not-allowed disabled:opacity-45"
               disabled={!canGoBack}
             >
               Reset
@@ -151,7 +155,7 @@ export const EventLoopSimulator = ({
             <button
               type="button"
               onClick={handlePrevious}
-              className="rounded-full border border-white/15 px-3 py-1.5 text-xs font-semibold text-white disabled:cursor-not-allowed disabled:opacity-45"
+              className="rounded-md border border-(--line-strong) px-3 py-1.5 text-xs font-medium disabled:cursor-not-allowed disabled:opacity-45"
               disabled={!canGoBack}
             >
               Previous
@@ -159,7 +163,7 @@ export const EventLoopSimulator = ({
             <button
               type="button"
               onClick={handleNext}
-              className="rounded-full bg-(--accent-cyan) px-3 py-1.5 text-xs font-semibold text-black disabled:cursor-not-allowed disabled:opacity-45"
+              className="rounded-md bg-(--text-primary) px-3 py-1.5 text-xs font-medium text-(--bg) disabled:cursor-not-allowed disabled:opacity-45"
               disabled={!canGoNext}
             >
               Next Step
@@ -167,7 +171,7 @@ export const EventLoopSimulator = ({
             <button
               type="button"
               onClick={toggleAutoplay}
-              className="rounded-full border border-(--accent-lime)/70 bg-(--accent-lime)/20 px-3 py-1.5 text-xs font-semibold text-(--accent-lime)"
+              className="rounded-md border border-(--line-strong) px-3 py-1.5 text-xs font-medium"
             >
               {isAutoplay ? 'Pause' : 'Autoplay'}
             </button>
@@ -206,12 +210,12 @@ export const EventLoopSimulator = ({
         />
       </div>
 
-      <div className="border-t border-white/10 p-4 md:p-5">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-(--text-muted)">
-          Console Output So Far
+      <div className="border-t border-(--line) p-4 md:p-5">
+        <p className="text-[11px] font-semibold text-(--text-muted)">
+          Console output so far
         </p>
 
-        <div className="mt-2 rounded-xl border border-white/10 bg-black/25 p-3">
+        <div className="mt-2 rounded-md border border-(--line) bg-(--surface) p-3">
           <AnimatePresence mode="wait" initial={false}>
             {currentStep.output.length ? (
               <motion.ol
@@ -220,10 +224,12 @@ export const EventLoopSimulator = ({
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.2, ease: 'easeOut' }}
-                className="space-y-1 text-sm text-white/90"
+                className="space-y-1 font-mono text-sm"
               >
                 {currentStep.output.map((line, index) => (
-                  <li key={`${line}-${index}`}>{index + 1}. {line}</li>
+                  <li key={`${line}-${index}`}>
+                    {index + 1}. {line}
+                  </li>
                 ))}
               </motion.ol>
             ) : (

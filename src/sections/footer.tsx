@@ -5,25 +5,27 @@ export const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="pb-8 pt-4">
-      <div className="container">
-        <div className="flex flex-col items-center justify-between gap-5 border-t border-white/10 pt-6 text-sm md:flex-row">
-          <p className="text-(--text-muted)">© {year} Mohit Dayma</p>
-          <nav className="flex flex-wrap items-center justify-center gap-5">
-            {footerLinks.map((link) => (
-              <a
-                key={link.title}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-(--text-muted) transition hover:text-white"
-              >
-                <span className="font-semibold">{link.title}</span>
-                <ArrowUpRightIcon className="size-4" />
-              </a>
-            ))}
-          </nav>
-        </div>
+    <footer className="border-t border-(--line)">
+      <div className="container flex flex-col items-start justify-between gap-4 py-10 sm:flex-row sm:items-center">
+        <p className="text-sm text-(--text-muted)">© {year} Mohit Dayma</p>
+        <nav className="flex flex-wrap items-center gap-6">
+          {footerLinks.map((link) => (
+            <a
+              key={link.title}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="nav-link inline-flex items-center gap-1"
+            >
+              {link.title}
+              <ArrowUpRightIcon
+                className="size-3.5"
+                aria-hidden="true"
+                focusable="false"
+              />
+            </a>
+          ))}
+        </nav>
       </div>
     </footer>
   );

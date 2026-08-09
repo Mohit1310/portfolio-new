@@ -1,59 +1,86 @@
 import { SectionHeader } from '@/components/section-header';
 import { portfolioProjects } from '@/utils/constants';
-import { ArrowUpRight, CheckCircleIcon } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 export const ProjectsSection = () => {
   return (
-    <section id="projects" className="py-16 md:py-24">
-      <div className="container">
+    <section id="projects" className="border-t border-(--line)">
+      <div className="container py-16 md:py-24">
         <SectionHeader
-          eyebrow="Selected Work"
-          title="Projects that ship with intent"
-          description="Each build balances visual identity, technical rigor, and measurable user outcomes."
+          title="Selected work"
+          description="Three shipped interfaces, each balancing visual identity with technical rigor."
         />
 
-        <div className="space-y-8">
-          {portfolioProjects.map((project, index) => (
-            <article
-              key={project.title}
-              className="grid-shell group relative overflow-hidden p-5 md:p-7"
-            >
-              <div className="pointer-events-none absolute left-0 top-0 h-1 w-full bg-linear-to-r from-(--accent-cyan) via-(--accent-lime) to-transparent opacity-70" />
-              <p className="text-xs uppercase tracking-[0.2em] text-(--text-muted)">
-                Case Study {String(index + 1).padStart(2, '0')}
-              </p>
-              <h3 className="mt-3 font-serif text-3xl tracking-tight text-white md:text-4xl">
-                {project.title}
-              </h3>
-              <p className="mt-4 text-sm uppercase tracking-[0.16em] text-(--text-muted)">Highlights</p>
-              <ul className="mt-5 space-y-3">
-                {project.results.map((result) => (
-                  <li
-                    key={result.title}
-                    className="flex items-start gap-2 text-sm leading-relaxed text-(--text-muted) md:text-base"
+        <table className="mt-12 w-full">
+          <caption className="sr-only">
+            Selected projects with stack, year, and live preview links.
+          </caption>
+          <thead>
+            <tr className="border-b border-(--line-strong)">
+              <th
+                scope="col"
+                className="pb-4 pr-6 text-left text-sm font-medium text-(--text-muted)"
+              >
+                Project
+              </th>
+              <th
+                scope="col"
+                className="hidden pb-4 pr-6 text-left text-sm font-medium text-(--text-muted) md:table-cell"
+              >
+                Stack
+              </th>
+              <th
+                scope="col"
+                className="pb-4 pl-6 text-right text-sm font-medium text-(--text-muted)"
+              >
+                Year
+              </th>
+              <th
+                scope="col"
+                className="pb-4 pl-6 text-right text-sm font-medium text-(--text-muted)"
+              >
+                Link
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {portfolioProjects.map((project) => (
+              <tr key={project.title} className="border-b border-(--line)">
+                <th scope="row" className="py-6 pr-6 text-left align-top">
+                  <span className="text-lg font-medium tracking-tight">
+                    {project.title}
+                  </span>
+                  <span className="mt-1 block max-w-md text-sm leading-relaxed text-(--text-muted)">
+                    {project.tagline}
+                  </span>
+                </th>
+                <td className="hidden py-6 pr-6 align-top md:table-cell">
+                  <span className="font-mono text-sm text-(--text-muted)">
+                    {project.stack}
+                  </span>
+                </td>
+                <td className="py-6 pl-6 text-right align-top font-mono text-sm tabular-nums text-(--text-muted)">
+                  {project.year}
+                </td>
+                <td className="py-6 pl-6 text-right align-top">
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-sm font-medium underline-offset-4 hover:underline"
                   >
-                    <CheckCircleIcon className="mt-0.5 size-5 shrink-0 text-(--accent-lime)" />
-                    <span>{result.title}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-7 flex items-center justify-between border-t border-white/10 pt-5">
-                <p className="text-xs uppercase tracking-[0.16em] text-(--text-muted)">
-                  Live preview available
-                </p>
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex h-11 items-center gap-2 rounded-full border border-(--accent-cyan) px-5 text-sm font-semibold text-(--accent-cyan) transition hover:bg-(--accent-cyan) hover:text-black"
-                >
-                  View Live
-                  <ArrowUpRight className="size-4" />
-                </a>
-              </div>
-            </article>
-          ))}
-        </div>
+                    View
+                    <ArrowUpRight
+                      className="size-4"
+                      aria-hidden="true"
+                      focusable="false"
+                    />
+                  </a>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </section>
   );

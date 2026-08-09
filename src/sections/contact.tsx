@@ -1,7 +1,6 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
-import { ArrowUpRightIcon } from 'lucide-react';
 
 export const ContactSection = () => {
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>(
@@ -40,79 +39,81 @@ export const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-16 md:py-24">
-      <div className="container">
-        <div className="grid-shell overflow-hidden p-7 md:p-10">
-          <div className="grid items-start gap-8 md:grid-cols-[1.1fr_0.9fr]">
+    <section id="contact" className="border-t border-(--line)">
+      <div className="container py-16 md:py-24">
+        <div className="grid gap-12 md:grid-cols-[1fr_1.25fr] md:gap-20">
+          <div>
+            <h2 className="text-3xl font-medium tracking-tight md:text-4xl">
+              Let&apos;s build something good together.
+            </h2>
+            <p className="mt-5 max-w-md leading-relaxed text-(--text-muted)">
+              If you need a frontend that is fast, conversion-focused, and
+              visually distinct, I can help with design execution and
+              implementation from concept to launch.
+            </p>
+          </div>
+
+          <form className="space-y-5" onSubmit={handleSubmit}>
             <div>
-              <p className="section-kicker">Let&apos;s Build</p>
-              <h2 className="mt-4 font-serif text-4xl leading-tight text-white md:text-5xl">
-                Ready to redesign your product edge?
-              </h2>
-              <p className="mt-4 max-w-xl text-sm leading-relaxed text-(--text-muted) md:text-base">
-                If you need a frontend that is fast, conversion-focused, and
-                visually distinct, I can help with design execution and
-                implementation from concept to launch.
-              </p>
-              <p className="mt-4 inline-flex items-center gap-2 text-sm text-(--text-muted)">
-                Send project details with the form
-                <ArrowUpRightIcon className="size-4" />
-              </p>
+              <label htmlFor="contact-name" className="label">
+                Name
+              </label>
+              <input
+                id="contact-name"
+                name="name"
+                required
+                placeholder="Your name"
+                className="input mt-2"
+              />
             </div>
 
-            <form className="space-y-4" onSubmit={handleSubmit}>
-              <label className="block text-xs font-semibold uppercase tracking-[0.14em] text-(--text-muted)">
-                Name
-                <input
-                  name="name"
-                  required
-                  className="mt-2 w-full rounded-xl border border-white/15 bg-black/25 px-4 py-3 text-sm text-white outline-hidden transition focus:border-(--accent-cyan)"
-                  placeholder="Your name"
-                />
+            <div>
+              <label htmlFor="contact-email" className="label">
+                Email
               </label>
+              <input
+                id="contact-email"
+                name="email"
+                type="email"
+                required
+                placeholder="you@example.com"
+                className="input mt-2"
+              />
+            </div>
 
-              <label className="block text-xs font-semibold uppercase tracking-[0.14em] text-(--text-muted)">
-                Mail
-                <input
-                  name="email"
-                  type="email"
-                  required
-                  className="mt-2 w-full rounded-xl border border-white/15 bg-black/25 px-4 py-3 text-sm text-white outline-hidden transition focus:border-(--accent-cyan)"
-                  placeholder="you@example.com"
-                />
+            <div>
+              <label htmlFor="contact-message" className="label">
+                Message
               </label>
+              <textarea
+                id="contact-message"
+                name="message"
+                required
+                rows={5}
+                placeholder="Tell me about your project or query"
+                className="input mt-2 resize-none"
+              />
+            </div>
 
-              <label className="block text-xs font-semibold uppercase tracking-[0.14em] text-(--text-muted)">
-                Description / Query
-                <textarea
-                  name="message"
-                  required
-                  rows={4}
-                  className="mt-2 w-full resize-none rounded-xl border border-white/15 bg-black/25 px-4 py-3 text-sm text-white outline-hidden transition focus:border-(--accent-cyan)"
-                  placeholder="Tell me about your project or query"
-                />
-              </label>
+            <button
+              type="submit"
+              disabled={status === 'sending'}
+              className="btn btn-primary disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {status === 'sending' ? 'Sending...' : 'Submit'}
+            </button>
 
-              <button
-                type="submit"
-                disabled={status === 'sending'}
-                className="inline-flex h-11 items-center rounded-full bg-(--accent-cyan) px-6 text-sm font-semibold text-black transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70"
-              >
-                {status === 'sending' ? 'Sending...' : 'Submit Query'}
-              </button>
-
-              {status === 'success' && (
-                <p className="text-sm text-emerald-300">
-                  Thanks, your message was submitted.
-                </p>
-              )}
-              {status === 'error' && (
-                <p className="text-sm text-rose-300">
-                  Submission failed. Please try again.
-                </p>
-              )}
-            </form>
-          </div>
+            {status === 'success' && (
+              <p className="text-sm text-(--text-muted)">
+                Thanks, your message was submitted.
+              </p>
+            )}
+            {status === 'error' && (
+              <p className="text-sm text-(--text-muted)">
+                Submission failed. Please try again.
+              </p>
+            )}
+          </form>
         </div>
       </div>
     </section>

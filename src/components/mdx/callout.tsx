@@ -5,19 +5,18 @@ interface CalloutProps extends PropsWithChildren {
   type?: 'info' | 'warning' | 'success';
 }
 
-const colorByType = {
-  info: 'border-(--accent-cyan)/45 bg-(--accent-cyan)/10 text-cyan-100',
-  warning:
-    'border-(--accent-orange)/50 bg-(--accent-orange)/10 text-orange-100',
-  success: 'border-emerald-300/45 bg-emerald-300/10 text-emerald-100',
+const borderByType = {
+  info: 'border-l-[#3b82f6]',
+  warning: 'border-l-[#d97706]',
+  success: 'border-l-[#15803d]',
 };
 
 export const Callout = ({ children, type = 'info' }: CalloutProps) => {
   return (
     <div
       className={twMerge(
-        'my-6 rounded-2xl border px-4 py-3 text-sm leading-relaxed md:text-base',
-        colorByType[type]
+        'my-6 rounded-md border border-(--line) border-l-4 bg-(--surface) px-4 py-3 text-sm leading-relaxed md:text-base',
+        borderByType[type]
       )}
     >
       {children}

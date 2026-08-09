@@ -1,23 +1,15 @@
 interface SectionHeaderProps {
   title: string;
-  eyebrow: string;
   description: string;
 }
 
-export const SectionHeader = ({
-  title,
-  eyebrow,
-  description,
-}: SectionHeaderProps) => {
+export const SectionHeader = ({ title, description }: SectionHeaderProps) => {
   return (
-    <div className="mx-auto mb-10 max-w-2xl text-center md:mb-14">
-      <p className="section-kicker">{eyebrow}</p>
-      <h2 className="mt-5 font-serif text-3xl tracking-tight text-white md:text-5xl">
+    <div className="grid gap-4 md:grid-cols-2 md:gap-12">
+      <h2 className="text-3xl font-medium tracking-tight md:text-4xl">
         {title}
       </h2>
-      <p className="mt-4 text-balance text-sm text-(--text-muted) md:text-base">
-        {description}
-      </p>
+      <p className="text-(--text-muted) md:pt-2">{description}</p>
     </div>
   );
 };
