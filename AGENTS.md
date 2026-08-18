@@ -1,0 +1,4 @@
+- Never use Accent-border callout
+- Avoid decorative typography patterns such as excessive letter spacing/tracking, especially large uppercase text with widely spaced characters.
+- Avoid pill-shaped UI patterns for simple statuses or labels; prefer simple text, compact badges, or natural inline indicators.
+- Avoid excessive visual decoration such as large gradient cards, radial/ambient glows, heavy rounded corners, and glassmorphism. Prefer clean, flat surfaces with subtle borders and purposeful spacing.
