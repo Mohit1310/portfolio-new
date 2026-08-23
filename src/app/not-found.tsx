@@ -1,69 +1,20 @@
-'use client';
-
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { Cpu, Frown, Smile } from 'lucide-react';
+import Link from "next/link";
 
 export default function NotFound() {
-  const [isFixed, setIsFixed] = useState(false);
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    if (count === 10) {
-      setIsFixed(true);
-    }
-  }, [count]);
-
-  const handleClick = () => {
-    if (!isFixed) {
-      setCount((prevCount) => prevCount + 1);
-    }
-  };
-
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-4">
-      <h1 className="text-6xl font-bold text-gray-300 mb-4">404</h1>
-      <h2 className="text-2xl font-semibold text-gray-300 mb-4">
-        Oops! Page Not Found
-      </h2>
-      <div className="text-center mb-8">
-        <p className="text-gray-400 mb-2">
-          Looks like this page is still under development.
-        </p>
-        <p className="text-gray-400">Want to help fix it?</p>
-      </div>
-      <div className="mb-8 text-center">
-        <button
-          onClick={handleClick}
-          className={`text-6xl mb-4 transition-transform duration-200 ${
-            isFixed ? 'cursor-default' : 'hover:scale-110 active:scale-95'
-          }`}
-        >
-          {isFixed ? (
-            <Smile className="text-green-500" />
-          ) : (
-            <Frown className="text-yellow-500" />
-          )}
-        </button>
-        <p className="text-gray-400">
-          {isFixed
-            ? "Great job! You've fixed the 404. If only all bugs were this easy!"
-            : `Click the emoji to fix (${count}/10)`}
-        </p>
-      </div>
-      {isFixed && (
-        <div className="text-center mb-8 animate-bounce flex gap-2">
-          <Cpu className="text-4xl text-(--accent-cyan) mb-2" />
-          <p className="text-gray-400">
-            Error fixed! But the page is still missing...
-          </p>
-        </div>
-      )}
+    <div className="shell flex min-h-screen flex-col items-start justify-center">
+      <p className="font-mono text-xs text-faint">404</p>
+      <h1 className="mt-3 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+        Page not found
+      </h1>
+      <p className="mt-3 max-w-md text-muted">
+        The page you&apos;re looking for doesn&apos;t exist or was moved.
+      </p>
       <Link
         href="/"
-        className="px-6 py-3 bg-(--accent-cyan) text-black rounded-full hover:bg-(--accent-cyan)/80 transition-colors text-lg font-semibold shadow-lg hover:shadow-xl"
+        className="mt-8 inline-flex h-9 items-center rounded-md border border-line px-4 text-sm text-foreground transition-colors hover:bg-surface-hover"
       >
-        Back to Portfolio
+        Back home
       </Link>
     </div>
   );

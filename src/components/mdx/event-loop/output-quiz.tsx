@@ -24,11 +24,11 @@ export const OutputQuiz = ({ expectedOrder, embedded = false }: OutputQuizProps)
     guessedLines.every((line, index) => line === expectedLines[index]);
 
   return (
-    <div className={embedded ? 'mt-3' : 'mt-3 rounded-xl border border-white/10 bg-black/20 p-3'}>
-      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-(--text-muted)">
+    <div className={embedded ? 'mt-3' : 'mt-3 rounded-lg border border-line-subtle bg-surface p-3'}>
+      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">
         Test Yourself
       </p>
-      <p className="mt-1 text-xs text-(--text-muted)">
+      <p className="mt-1 text-xs text-muted">
         Write the console output in order, one line per entry.
       </p>
 
@@ -39,14 +39,14 @@ export const OutputQuiz = ({ expectedOrder, embedded = false }: OutputQuizProps)
           setIsChecked(false);
         }}
         placeholder="Example: A D C - promise B - timeout"
-        className="mt-2 min-h-28 w-full rounded-lg border border-white/15 bg-black/35 px-3 py-2 text-xs text-white outline-none transition focus:border-(--accent-cyan)/70 md:text-sm"
+        className="mt-2 min-h-28 w-full rounded-md border border-line-subtle bg-surface px-3 py-2 text-xs text-foreground outline-none transition focus:border-line md:text-sm"
       />
 
       <div className="mt-2 flex items-center gap-2">
         <button
           type="button"
           onClick={() => setIsChecked(true)}
-          className="rounded-full bg-(--accent-cyan) px-3 py-1.5 text-xs font-semibold text-black disabled:cursor-not-allowed disabled:opacity-45"
+          className="rounded-md bg-foreground px-3 py-1.5 text-xs font-semibold text-background hover:bg-white disabled:cursor-not-allowed disabled:opacity-45"
           disabled={!guess.trim()}
         >
           Check Output
@@ -57,7 +57,7 @@ export const OutputQuiz = ({ expectedOrder, embedded = false }: OutputQuizProps)
             setGuess('');
             setIsChecked(false);
           }}
-          className="rounded-full border border-white/15 px-3 py-1.5 text-xs font-semibold text-white"
+          className="rounded-md border border-line px-3 py-1.5 text-xs font-semibold text-foreground hover:bg-surface-hover"
         >
           Clear
         </button>
@@ -66,7 +66,7 @@ export const OutputQuiz = ({ expectedOrder, embedded = false }: OutputQuizProps)
       {isChecked && (
         <p
           className={`mt-2 text-xs font-semibold ${
-            isCorrect ? 'text-emerald-300' : 'text-orange-300'
+            isCorrect ? 'text-foreground' : 'text-muted'
           }`}
         >
           {isCorrect

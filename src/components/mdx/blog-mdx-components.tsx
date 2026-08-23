@@ -14,25 +14,20 @@ export const blogMdxComponents: MDXComponents = {
     <h3 className="pt-2 text-xl font-semibold text-white" {...props} />
   ),
   p: (props) => (
-    <p className="text-base leading-relaxed text-(--text-muted) md:text-lg" {...props} />
+    <p className="text-base leading-relaxed text-muted md:text-lg" {...props} />
   ),
   ul: (props) => <ul className="list-disc space-y-2 pl-6" {...props} />,
-  li: (props) => <li className="text-(--text-muted)" {...props} />,
-  a: (props) => (
-    <a
-      className="font-semibold text-(--accent-cyan) underline decoration-white/20 underline-offset-4"
-      {...props}
-    />
-  ),
+  li: (props) => <li className="text-muted" {...props} />,
+  a: (props) => <a className="link" {...props} />,
   blockquote: (props) => (
     <blockquote
-      className="my-6 border-l-2 border-(--accent-cyan) pl-4 italic text-white/80"
+      className="my-6 border-l-2 border-line pl-4 italic text-muted"
       {...props}
     />
   ),
   pre: (props) => (
     <pre
-      className="my-6 overflow-x-auto rounded-2xl border border-white/10 bg-slate-950/80 p-4 text-sm md:text-base"
+      className="my-6 overflow-x-auto rounded-lg border border-line-subtle bg-surface p-4 text-sm md:text-base"
       {...props}
     />
   ),
@@ -45,7 +40,7 @@ export const blogMdxComponents: MDXComponents = {
 
     return (
       <code
-        className="rounded-md border border-white/15 bg-white/10 px-1.5 py-0.5 font-mono text-[0.88em] text-(--accent-cyan)"
+        className="rounded-md border border-line-subtle bg-surface px-1.5 py-0.5 font-mono text-[0.88em] text-foreground"
         {...props}
       />
     );
