@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { footerLinks } from "@/utils/constants";
 
 export const Header = () => (
   <header className="fixed inset-x-0 top-0 z-50 border-b border-line-subtle bg-background/80 backdrop-blur">

@@ -34,11 +34,15 @@ export const stack = [
 
 export const footerLinks = [
   {
+    title: "GitHub",
+    href: "https://github.com/Mohit1310",
+  },
+  {
     title: "LinkedIn",
     href: "https://www.linkedin.com/in/mohit1310/",
   },
   {
-    title: "Twitter",
+    title: "X",
     href: "https://x.com/Mohit13_10",
   },
 ];
