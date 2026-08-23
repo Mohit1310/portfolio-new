@@ -9,7 +9,7 @@ import {
   useTime,
   useTransform,
 } from "motion/react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 
 const LOOP = 44000;
 // Ultra-smooth S: 55 points (8 sub-segments per U-turn) vs 31/19 before.
@@ -52,6 +52,10 @@ const POLAR = [
 ];
 
 const linear = (t: number) => t;
+const subscribeToClient = () => () => {};
+const getClientSnapshot = () => true;
+const getServerSnapshot = () => false;
+
 const LEG_PAIRS: Array<[number, number]> = [
   [0, 1],
   [9, 10],
@@ -85,6 +89,11 @@ function buildPitches(heightWidthRatio: number): number[] {
 }
 
 export const PlaneFlyover = () => {
+  const isClient = useSyncExternalStore(
+    subscribeToClient,
+    getClientSnapshot,
+    getServerSnapshot,
+  );
   const prefersReducedMotion = useReducedMotion();
   const viewerRef = useRef<HTMLElement | null>(null);
   const time = useTime();
@@ -112,7 +121,7 @@ export const PlaneFlyover = () => {
     viewerRef.current?.setAttribute("camera-orbit", value);
   });
 
-  if (prefersReducedMotion) {
+  if (!isClient || prefersReducedMotion) {
     return null;
   }
 
