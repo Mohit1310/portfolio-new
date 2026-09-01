@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
@@ -39,6 +40,21 @@ export async function generateMetadata({
   return {
     title: `${post.title} | Mohit Dayma`,
     description: post.excerpt,
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      type: "article",
+      ...(post.coverImage && {
+        images: [
+          {
+            url: post.coverImage,
+            width: 1672,
+            height: 941,
+            alt: post.title,
+          },
+        ],
+      }),
+    },
   };
 }
 
@@ -72,6 +88,21 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             " · ",
           )}
         </p>
+
+        {post.coverImage && (
+          <div className="mt-10 overflow-hidden rounded-lg border border-line-subtle">
+            <Image
+              src={post.coverImage}
+              alt="Abstract directed social graph with a highlighted recommendation path"
+              width={1672}
+              height={941}
+              sizes="(max-width: 768px) 100vw, 768px"
+              className="h-auto w-full"
+              priority
+            />
+          </div>
+        )}
+
         <div className="prose mt-10 max-w-none">
           <MDXRemote
             source={post.content}
