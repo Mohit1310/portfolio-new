@@ -69,7 +69,7 @@ export const GraphCanvas = ({
           (focusedEdge) =>
             focusedEdge.from === edge.from && focusedEdge.to === edge.to
         );
-        const color = isFocused ? 'var(--text-primary)' : 'var(--line-strong)';
+        const color = isFocused ? 'var(--color-foreground)' : 'var(--color-line)';
         const angle = Math.atan2(to.y - from.y, to.x - from.x);
         const startX = from.x + Math.cos(angle) * RADIUS;
         const startY = from.y + Math.sin(angle) * RADIUS;
@@ -108,15 +108,15 @@ export const GraphCanvas = ({
         const fill = isActive
           ? ACTIVE_COLOR
           : isYou
-            ? 'var(--text-primary)'
-            : 'var(--surface)';
+            ? 'var(--color-foreground)'
+            : 'var(--color-surface)';
         const stroke = isActive
           ? ACTIVE_COLOR
           : isYou
-            ? 'var(--text-primary)'
+            ? 'var(--color-foreground)'
             : isAuthority
               ? AUTHORITY_COLOR
-              : 'var(--line-strong)';
+              : 'var(--color-line)';
 
         return (
           <g
@@ -130,7 +130,7 @@ export const GraphCanvas = ({
                 cy={pos.y}
                 r={RADIUS + 5}
                 fill="none"
-                stroke={isUpdated ? ACTIVE_COLOR : 'var(--text-primary)'}
+                stroke={isUpdated ? ACTIVE_COLOR : 'var(--color-foreground)'}
                 strokeWidth={1.5}
                 strokeDasharray="4 3"
                 opacity={0.9}
@@ -142,7 +142,7 @@ export const GraphCanvas = ({
                 cy={pos.y}
                 r={RADIUS + 9}
                 fill="none"
-                stroke="var(--text-primary)"
+                stroke="var(--color-foreground)"
                 strokeWidth={1}
                 opacity={0.4}
               />
@@ -161,7 +161,7 @@ export const GraphCanvas = ({
               textAnchor="middle"
               fontSize={11}
               fontWeight={600}
-              fill={isActive ? ACTIVE_COLOR : 'var(--text-muted)'}
+              fill={isActive ? ACTIVE_COLOR : 'var(--color-muted)'}
               fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace"
             >
               {node.label}
@@ -172,7 +172,7 @@ export const GraphCanvas = ({
                 y={pos.y + RADIUS + 21}
                 textAnchor="middle"
                 fontSize={10}
-                fill="var(--text-muted)"
+                fill="var(--color-muted)"
                 fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace"
               >
                 {labels[node.id]}

@@ -14,22 +14,22 @@ export const ColdStartQueue = () => {
   const step = queueSteps[stepIndex];
 
   return (
-    <section className="my-8 overflow-hidden rounded-lg border border-(--line)">
-      <div className="border-b border-(--line) p-4 md:p-5">
-        <p className="text-xs font-medium text-(--text-muted)">
+    <section className="my-8 overflow-hidden rounded-lg border border-line-subtle">
+      <div className="border-b border-line-subtle p-4 md:p-5">
+        <p className="text-xs font-medium text-muted">
           Interactive system demo
         </p>
         <h4 className="mt-1 text-lg font-medium tracking-tight md:text-xl">
           The cold-start queue
         </h4>
-        <p className="mt-1 text-sm text-(--text-muted)">
+        <p className="mt-1 text-sm text-muted">
           Users wait to be refreshed. New users jump the line.
         </p>
       </div>
 
       <div className="p-4 md:p-5">
-        <div className="rounded-md border border-(--line) bg-(--surface) p-3">
-          <p className="text-[11px] font-semibold text-(--text-muted)">
+        <div className="rounded-md border border-line-subtle bg-surface p-3">
+          <p className="text-[11px] font-semibold text-muted">
             Refresh queue &mdash; front first
           </p>
 
@@ -48,13 +48,13 @@ export const ColdStartQueue = () => {
                     transition={{ duration: 0.24, ease: 'easeOut' }}
                     className={twMerge(
                       'flex items-center justify-between rounded-md border px-3 py-2 text-xs font-medium md:text-sm',
-                      isNext && 'border-(--text-primary)',
+                      isNext && 'border-foreground',
                       isHighlighted && 'border-amber-500 bg-amber-500/10',
-                      !isNext && !isHighlighted && 'border-(--line)'
+                      !isNext && !isHighlighted && 'border-line-subtle'
                     )}
                   >
                     <span>{nodeLabel(id)}</span>
-                    <span className="font-mono text-[10px] text-(--text-muted)">
+                    <span className="font-mono text-[10px] text-muted">
                       {isNext ? 'NEXT' : `#${index + 1}`}
                     </span>
                   </motion.div>
@@ -65,7 +65,7 @@ export const ColdStartQueue = () => {
         </div>
       </div>
 
-      <div className="border-y border-(--line) bg-(--surface) p-4 md:p-5">
+      <div className="border-y border-line-subtle bg-surface p-4 md:p-5">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <p className="text-sm font-medium">
             Step {stepIndex + 1} / {queueSteps.length}: {step.title}
@@ -80,7 +80,7 @@ export const ColdStartQueue = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.22, ease: 'easeOut' }}
-            className="mt-3 text-sm text-(--text-muted)"
+            className="mt-3 text-sm text-muted"
           >
             {step.explanation}
           </motion.p>

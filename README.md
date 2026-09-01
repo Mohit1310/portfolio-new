@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Hi, I'm Mohit Dayma
 
-## Getting Started
+**Frontend Engineer** focused on clean, performant interfaces with React & Next.js.
 
-First, run the development server:
+I care about the details that make products feel sharp — performance, accessibility, motion, and maintainable code. Currently building with Next.js, TypeScript, TanStack Query, Zustand, and modern UI libraries.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🔗 [Portfolio](https://mohitd.com) · [LinkedIn](https://linkedin.com/in/mohit-dayma-421731192) · [Twitter](https://twitter.com/Mohit13_10)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### What I work with
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+**Core**  
+`Next.js` · `React` · `TypeScript` · `Tailwind CSS` · `TanStack Query` · `Zustand`
 
-## Learn More
+**Also comfortable with**  
+`Node.js` `Prisma` · `PostgreSQL`
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Selected work
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+| Project | Description | Stack | Link |
+|---------|-------------|-------|------|
+| **Bugbook** | 𝕏-style social feed with timeline, interactions, and solid client-server state | Next.js, Tailwind, Prisma, React Query | [Live](https://bugbook-62ez.vercel.app/) |
+| **Netflix + GPT** | Netflix clone with GPT-powered search + TMDB data | React, Tailwind, Firebase | [Live](https://nettflixgpt.netlify.app) |
+| **YouTube Clone** | Debounced search, nested comments, clean responsive layout | React, Tailwind | [Live](https://advancedyoutube.netlify.app) |
 
-## Deploy on Vercel
+More on my [portfolio](https://mohitd.com).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Open to interesting frontend / full-stack roles and side projects.  
+Feel free to reach out.

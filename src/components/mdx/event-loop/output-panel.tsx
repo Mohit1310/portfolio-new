@@ -18,20 +18,20 @@ export const OutputPanel = ({ expectedOrder }: OutputPanelProps) => {
   const isPractice = mode === 'practice';
 
   return (
-    <div className="rounded-xl border border-white/10 bg-black/25 p-3">
+    <div className="rounded-lg border border-line-subtle bg-surface p-3">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-(--text-muted)">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">
           Output Challenge
         </p>
-        <div className="inline-flex rounded-full border border-white/15 bg-black/35 p-0.5">
+        <div className="inline-flex rounded-md border border-line-subtle bg-surface p-0.5">
           <button
             type="button"
             aria-pressed={isPractice}
             onClick={() => setMode('practice')}
-            className={`rounded-full px-3 py-1 text-[11px] font-semibold transition ${
+            className={`rounded-md px-3 py-1 text-[11px] font-semibold transition ${
               isPractice
-                ? 'bg-(--accent-cyan) text-black'
-                : 'text-(--text-muted) hover:text-white'
+                ? 'bg-surface-hover text-foreground'
+                : 'text-muted hover:text-foreground'
             }`}
           >
             Practice
@@ -40,10 +40,10 @@ export const OutputPanel = ({ expectedOrder }: OutputPanelProps) => {
             type="button"
             aria-pressed={!isPractice}
             onClick={() => setMode('expected')}
-            className={`rounded-full px-3 py-1 text-[11px] font-semibold transition ${
+            className={`rounded-md px-3 py-1 text-[11px] font-semibold transition ${
               !isPractice
-                ? 'bg-(--accent-cyan) text-black'
-                : 'text-(--text-muted) hover:text-white'
+                ? 'bg-surface-hover text-foreground'
+                : 'text-muted hover:text-foreground'
             }`}
           >
             Show Expected

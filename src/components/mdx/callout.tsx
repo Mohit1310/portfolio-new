@@ -6,17 +6,16 @@ interface CalloutProps extends PropsWithChildren {
 }
 
 const colorByType = {
-  info: 'border-(--accent-cyan)/45 bg-(--accent-cyan)/10 text-cyan-100',
-  warning:
-    'border-(--accent-orange)/50 bg-(--accent-orange)/10 text-orange-100',
-  success: 'border-emerald-300/45 bg-emerald-300/10 text-emerald-100',
+  info: 'border-line-subtle bg-surface text-muted',
+  warning: 'border-line bg-surface text-foreground',
+  success: 'border-line-subtle bg-surface text-muted',
 };
 
 export const Callout = ({ children, type = 'info' }: CalloutProps) => {
   return (
     <div
       className={twMerge(
-        'my-6 rounded-2xl border px-4 py-3 text-sm leading-relaxed md:text-base',
+        'my-6 rounded-lg border px-4 py-3 text-sm leading-relaxed md:text-base',
         colorByType[type]
       )}
     >

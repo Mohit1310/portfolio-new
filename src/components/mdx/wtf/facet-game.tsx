@@ -14,22 +14,22 @@ export const FacetGame = () => {
   ).length;
 
   return (
-    <section className="my-8 overflow-hidden rounded-lg border border-(--line)">
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-(--line) p-4 md:p-5">
+    <section className="my-8 overflow-hidden rounded-lg border border-line-subtle">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line-subtle p-4 md:p-5">
         <div>
-          <p className="text-xs font-medium text-(--text-muted)">
+          <p className="text-xs font-medium text-muted">
             Quick classification game
           </p>
           <h4 className="mt-1 text-lg font-medium tracking-tight md:text-xl">
             Interested in, or similar to?
           </h4>
         </div>
-        <span className="rounded-md border border-(--line-strong) px-3 py-1.5 font-mono text-xs text-(--text-muted)">
+        <span className="rounded-md border border-line px-3 py-1.5 font-mono text-xs text-muted">
           Score: {score}/{facetQuestions.length}
         </span>
       </div>
 
-      <div className="divide-y divide-(--line)">
+      <div className="divide-y divide-line-subtle">
         {facetQuestions.map((question, index) => {
           const chosen = answers[index];
           const isCorrect = chosen === question.answer;
@@ -53,7 +53,7 @@ export const FacetGame = () => {
                       }
                       className={twMerge(
                         'rounded-md border px-3 py-1.5 text-xs font-medium transition',
-                        isChosen && isCorrect && 'border-emerald-500 bg-emerald-500 text-(--bg)',
+                        isChosen && isCorrect && 'border-emerald-500 bg-emerald-500 text-background',
                         isChosen && !isCorrect && 'border-amber-500 bg-amber-500/10 text-amber-700 dark:text-amber-400',
                         !isChosen &&
                           isRightAnswer &&
@@ -61,7 +61,7 @@ export const FacetGame = () => {
                           'border-emerald-500 text-emerald-700 dark:text-emerald-400',
                         !isChosen &&
                           !(isRightAnswer && chosen !== undefined) &&
-                          'border-(--line-strong) hover:opacity-80'
+                          'border-line hover:opacity-80'
                       )}
                     >
                       {option === 'interested-in'

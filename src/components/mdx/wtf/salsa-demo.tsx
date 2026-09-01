@@ -26,15 +26,15 @@ export const SalsaDemo = () => {
   );
 
   return (
-    <section className="my-8 overflow-hidden rounded-lg border border-(--line)">
-      <div className="border-b border-(--line) p-4 md:p-5">
-        <p className="text-xs font-medium text-(--text-muted)">
+    <section className="my-8 overflow-hidden rounded-lg border border-line-subtle">
+      <div className="border-b border-line-subtle p-4 md:p-5">
+        <p className="text-xs font-medium text-muted">
           Interactive algorithm demo
         </p>
         <h4 className="mt-1 text-lg font-medium tracking-tight md:text-xl">
           SALSA &mdash; the two-step walk
         </h4>
-        <p className="mt-1 text-sm text-(--text-muted)">
+        <p className="mt-1 text-sm text-muted">
           Hubs on the left, authorities on the right. Each pass redistributes
           scores across the edges.
         </p>
@@ -50,14 +50,14 @@ export const SalsaDemo = () => {
           className="h-auto w-full"
         />
 
-        <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-(--text-muted)">
+        <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-muted">
           <span>Blue circle = authority (recommendation candidate)</span>
           <span>Amber ring = updated this round</span>
           <span>Number under a node = current score</span>
         </div>
       </div>
 
-      <div className="border-y border-(--line) bg-(--surface) p-4 md:p-5">
+      <div className="border-y border-line-subtle bg-surface p-4 md:p-5">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <p className="text-sm font-medium">
             Step {stepIndex + 1} / {salsaSteps.length}: {step.title}
@@ -72,7 +72,7 @@ export const SalsaDemo = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.22, ease: 'easeOut' }}
-            className="mt-3 text-sm text-(--text-muted)"
+            className="mt-3 text-sm text-muted"
           >
             {step.explanation}
           </motion.p>
@@ -80,8 +80,8 @@ export const SalsaDemo = () => {
       </div>
 
       {stepIndex === salsaSteps.length - 1 && (
-        <div className="border-t border-(--line) p-4 text-sm leading-relaxed text-(--text-muted) md:p-5">
-          <span className="text-[11px] font-semibold text-(--text-muted)">
+        <div className="border-t border-line-subtle p-4 text-sm leading-relaxed text-muted md:p-5">
+          <span className="text-[11px] font-semibold text-muted">
             Result &mdash; ranked
           </span>
           <p className="mt-2 font-mono text-xs md:text-sm">

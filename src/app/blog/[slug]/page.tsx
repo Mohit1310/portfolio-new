@@ -1,22 +1,22 @@
-import type { Metadata } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
-import { MDXRemote } from 'next-mdx-remote/rsc';
-import { notFound } from 'next/navigation';
-import rehypeHighlight from 'rehype-highlight';
-import { blogMdxComponents } from '@/components/mdx/blog-mdx-components';
-import { Header } from '@/sections/header';
-import { getAllPosts, getPostBySlug } from '@/utils/blogs';
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import { notFound } from "next/navigation";
+import rehypeHighlight from "rehype-highlight";
+import { blogMdxComponents } from "@/components/mdx/blog-mdx-components";
+import { Header } from "@/sections/header";
+import { getAllPosts, getPostBySlug } from "@/utils/blogs";
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
 }
 
 const formatDate = (date: string) =>
-  new Intl.DateTimeFormat('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+  new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   }).format(new Date(date));
 
 export async function generateStaticParams() {
@@ -33,7 +33,7 @@ export async function generateMetadata({
 
   if (!post) {
     return {
-      title: 'Post Not Found | Mohit Dayma',
+      title: "Post Not Found | Mohit Dayma",
     };
   }
 
@@ -43,7 +43,7 @@ export async function generateMetadata({
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      type: 'article',
+      type: "article",
       ...(post.coverImage && {
         images: [
           {
@@ -71,90 +71,79 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   return (
-    <main className="min-h-screen pb-14 pt-28 md:pt-32">
+    <main className="shell min-h-screen pb-20 pt-10 md:pt-14">
       <Header />
-      <div className="container">
-        <article className="grid-shell p-6 md:p-10">
-          <p className="text-xs uppercase tracking-[0.16em] text-(--text-muted)">
-            {formatDate(post.publishedAt)} • {post.readTime}
-          </p>
-          <h1 className="mt-3 max-w-4xl font-serif text-4xl text-white md:text-6xl">
-            {post.title}
-          </h1>
-          <div className="mt-5 flex flex-wrap gap-2">
-            {post.tags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full border border-white/15 bg-black/25 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-(--text-muted)"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-
-          {post.coverImage && (
-            <div className="mt-10 overflow-hidden border border-(--line)">
-              <Image
-                src={post.coverImage}
-                alt="Abstract directed social graph with a highlighted recommendation path"
-                width={1672}
-                height={941}
-                sizes="(max-width: 768px) 100vw, 768px"
-                className="h-auto w-full"
-                priority
-              />
-            </div>
+      <article className="max-w-none">
+        <Link
+          href="/blog"
+          className="text-sm text-muted transition-colors hover:text-foreground"
+        >
+          ← All posts
+        </Link>
+        <h1 className="mt-6 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+          {post.title}
+        </h1>
+        <p className="mt-3 font-mono text-xs text-faint">
+          {[formatDate(post.publishedAt), post.readTime, ...post.tags].join(
+            " · ",
           )}
+        </p>
 
-          <div className="prose prose-invert mt-8 max-w-none space-y-5">
-            <MDXRemote
-              source={post.content}
-              components={blogMdxComponents}
-              options={{
-                mdxOptions: {
-                  rehypePlugins: [rehypeHighlight],
-                },
-              }}
+        {post.coverImage && (
+          <div className="mt-10 overflow-hidden rounded-lg border border-line-subtle">
+            <Image
+              src={post.coverImage}
+              alt="Abstract directed social graph with a highlighted recommendation path"
+              width={1672}
+              height={941}
+              sizes="(max-width: 768px) 100vw, 768px"
+              className="h-auto w-full"
+              priority
             />
           </div>
+        )}
 
-          {(previousPost || nextPost) && (
-            <div className="mt-10 grid gap-3 border-t border-white/10 pt-6 md:grid-cols-2">
-              {previousPost ? (
-                <Link
-                  href={`/blog/${previousPost.slug}`}
-                  className="rounded-2xl border border-white/10 bg-black/25 p-4 transition hover:border-white/25"
-                >
-                  <p className="text-xs uppercase tracking-[0.14em] text-(--text-muted)">
-                    Previous Article
-                  </p>
-                  <p className="mt-2 text-lg font-semibold text-white">
-                    {previousPost.title}
-                  </p>
-                </Link>
-              ) : (
-                <div />
-              )}
+        <div className="prose mt-10 max-w-none">
+          <MDXRemote
+            source={post.content}
+            components={blogMdxComponents}
+            options={{
+              mdxOptions: {
+                rehypePlugins: [rehypeHighlight],
+              },
+            }}
+          />
+        </div>
 
-              {nextPost ? (
-                <Link
-                  href={`/blog/${nextPost.slug}`}
-                  className="rounded-2xl border border-white/10 bg-black/25 p-4 text-right transition hover:border-white/25"
-                >
-                  <p className="text-xs uppercase tracking-[0.14em] text-(--text-muted)">
-                    Next Article
-                  </p>
-                  <p className="mt-2 text-lg font-semibold text-white">
-                    {nextPost.title}
-                  </p>
-                </Link>
-              ) : (
-                <div />
-              )}
-            </div>
-          )}
-        </article>
-      </div>
+        {(previousPost || nextPost) && (
+          <nav className="mt-14 grid gap-6 border-t border-line-subtle pt-6 md:grid-cols-2">
+            {previousPost ? (
+              <Link href={`/blog/${previousPost.slug}`} className="group">
+                <p className="font-mono text-xs text-faint">Previous</p>
+                <p className="mt-1 text-sm font-medium text-foreground transition-colors group-hover:text-white">
+                  {previousPost.title}
+                </p>
+              </Link>
+            ) : (
+              <div />
+            )}
+
+            {nextPost ? (
+              <Link
+                href={`/blog/${nextPost.slug}`}
+                className="group md:text-right"
+              >
+                <p className="font-mono text-xs text-faint">Next</p>
+                <p className="mt-1 text-sm font-medium text-foreground transition-colors group-hover:text-white">
+                  {nextPost.title}
+                </p>
+              </Link>
+            ) : (
+              <div />
+            )}
+          </nav>
+        )}
+      </article>
     </main>
   );
 }

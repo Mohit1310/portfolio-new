@@ -16,15 +16,15 @@ export const GraphExplorer = () => {
   const selectedLabel = selected ? nodeLabel(selected) : null;
 
   return (
-    <section className="my-8 overflow-hidden rounded-lg border border-(--line)">
-      <div className="border-b border-(--line) p-4 md:p-5">
-        <p className="text-xs font-medium text-(--text-muted)">
+    <section className="my-8 overflow-hidden rounded-lg border border-line-subtle">
+      <div className="border-b border-line-subtle p-4 md:p-5">
+        <p className="text-xs font-medium text-muted">
           Interactive graph model
         </p>
         <h4 className="mt-1 text-lg font-medium tracking-tight md:text-xl">
           The interest graph
         </h4>
-        <p className="mt-1 text-sm text-(--text-muted)">
+        <p className="mt-1 text-sm text-muted">
           You follow a few people; everyone follows someone.
         </p>
       </div>
@@ -40,10 +40,10 @@ export const GraphExplorer = () => {
         />
       </div>
 
-      <div className="border-t border-(--line) p-4 text-sm leading-relaxed text-(--text-muted) md:p-5">
+      <div className="border-t border-line-subtle p-4 text-sm leading-relaxed text-muted md:p-5">
         {selected && selectedLabel ? (
           <p>
-            <span className="font-medium text-(--text-primary)">
+            <span className="font-medium text-foreground">
               {selectedLabel}
             </span>{' '}
             {followees.length > 0
