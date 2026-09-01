@@ -1,0 +1,115 @@
+---
+title: "WTF: How Twitter's 'Who to Follow' Service Works"
+excerpt: "An interactive walkthrough of Twitter's WTF paper: the single-machine decision, random walks, SALSA, and the cold-start queue."
+publishedAt: 2026-08-09
+readTime: 13 min read
+coverImage: /images/blog/wtf-who-to-follow-cover.png
+tags:
+  - System Design
+  - Recommendation Systems
+  - Graphs
+---
+
+## Why this matters
+
+Recommendation systems often use machine learning. Twitter's first recommendation system did not. It used graph theory.
+
+WTF ("Who to Follow") created millions of daily recommendations. A team of three engineers built it in a few months. It turned the interest graph into a product.
+
+> Rule to remember: the first WTF recommendations came from graph structure. They used random walks plus SALSA. They did not use machine learning. Machine learning came later.
+
+## The problem: two kinds of recommendations
+
+The paper divides the question "who should you follow?" into two parts.
+
+- **"Interested in"**: you care about a topic. An account about that topic is a good fit. It stays a good fit even if you share nothing else.
+- **"Similar to"**: two accounts that follow the same people are often alike. This is called homophily.
+
+<FacetGame />
+
+## The graph model
+
+Each user is one node. Each follow is one directed edge. The arrow points from the follower to the followed.
+
+The follow relationship is asymmetric. You can follow a user. That user does not have to follow you. This is why the Twitter graph is an interest graph. It is not a social graph. As of August 2012, the graph had over 20 billion edges.
+
+<GraphExplorer />
+
+## The single-machine decision
+
+In 2010, the industry was moving to distributed systems. Twitter chose the opposite way. WTF held the entire graph in the RAM of one server. There was no partitioning. There was no cross-machine communication.
+
+The team made this decision for two reasons.
+
+**Reason 1** — a distributed engine must partition the graph. Graph partitioning is a hard problem. The graph has a power-law distribution of vertex degrees. For example, one user had 28 million followers. Any placement of that user puts many edges across machines. Those edges cause network traffic and latency.
+
+**Reason 2** — the graph fit in one machine. Each edge used about five bytes of memory. A server with 72 GB of RAM could hold about eight billion edges.
+
+<MemoryDecision />
+
+The engine that made this possible is Cassovary. Twitter built Cassovary from scratch for WTF. Its query model is vertex-based. It stores adjacency lists as primitive integer arrays. It runs random walks to approximate personalized PageRank. Twitter open-sourced Cassovary in March 2012.
+
+Fault tolerance did not come from partitioning. It came from replication. A fleet of servers each held a complete copy of the graph. This gave reliability and scale-out with no extra machinery.
+
+> Why it worked: the graph grew slower than commodity RAM. Why it ended: one day, the graph grew larger than the RAM of one server.
+
+## Algorithm 1: Circle of trust (random walk)
+
+A walker starts at @you. The walker hops to a random follow. It repeats many times. The accounts it visits most often form your circle of trust.
+
+<CircleOfTrust />
+
+WTF computed the circle of trust from scratch every time. So the results were always fresh, within one daily graph snapshot. WTF also offered this as a service. Other Twitter products used it to upweight content in search and discovery.
+
+## Algorithm 2: SALSA — the two-step walk
+
+Your circle of trust are the hubs. The accounts they follow are the authorities. The authorities are your candidates. The hub side holds about 500 top-ranked nodes from your circle of trust.
+
+<SalsaDemo />
+
+> Each SALSA step crosses two links (hub → authority → hub). So the walk always ends up back on the side where it started. This is a random walk on a bipartite graph.
+
+SALSA originally ranked web pages. It is in the same family as PageRank and HITS. Twitter adapted it for user recommendation. The ranking of the hubs also powers the "similar to you" feature.
+
+## Making it real-time: the cold-start queue
+
+Recommendations cannot wait for a nightly batch. WTF keeps a queue of users to refresh. The queue sorts users by their "last refresh" timestamp.
+
+<ColdStartQueue />
+
+New users have no history. They jump to the front of the queue. They often see recommendations before account setup finishes. When a user consumes all recommendations, the queue raises that user's priority. That user gets new suggestions within about an hour.
+
+For new users, WTF also ran a separate set of real-time algorithms. These algorithms read the graph directly from FlockDB. FlockDB is the system of record. It holds the ground truth of the graph.
+
+## Did it work?
+
+Offline evaluations tested precision and recall on historical graph snapshots. The real verdict came from online A/B tests. The tests tracked:
+
+- **FTR** (follow-through rate) — does the user actually follow the suggestion?
+- **EPI** (engagement per impression) — does the user keep engaging with it later?
+
+The production system did not run one algorithm. It blended results from about 20 different algorithms. An endpoint called the Blender combined the results. It also ran the A/B tests and recorded feedback.
+
+## Where it broke, and the sequel
+
+The single machine hit a memory ceiling. WTF also wanted richer signals. It wanted metadata on edges, such as retweets, mentions, and timestamps. A follow graph alone could not hold that.
+
+WTF built a second generation. It used Hadoop and machine learning. It defined a graph called the "Real Graph". The Real Graph lived on HDFS, not in memory. Its edges carried retweets, favorites, and mentions, plus weights.
+
+The new pipeline had two stages:
+
+1. **Candidate generation** — use graph algorithms to produce a short list of promising accounts.
+2. **Rescoring** — apply a learned model to rank those candidates. The model was logistic regression, trained with stochastic gradient descent.
+
+## Final checklist
+
+- Graph structure alone produced good recommendations. It required no machine learning.
+- The single-machine design gave simplicity and millisecond latency. It did not last forever.
+- Random walks find your local circle. SALSA finds the global authorities.
+- The design assumed that the graph would grow slower than RAM grew.
+- The system got reliability from replication, not from partitioning.
+- Production blended about 20 algorithms into one ensemble.
+
+**Paper:** *WTF: The Who to Follow Service at Twitter* — Gupta, Goel, Lin, Sharma, Wang, Zadeh (WWW 2013).
+
+[Read the original paper](https://web.stanford.edu/~ashishg/papers/wtf_overview.pdf)

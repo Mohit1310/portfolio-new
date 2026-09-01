@@ -85,6 +85,8 @@
     --text-primary: #e6f1ff;
     --text-muted: #8ea2bf;
     --line: rgba(148, 163, 184, 0.28);
+    --line-strong: rgba(148, 163, 184, 0.5);
+    --surface: #0f1424;
     --accent-cyan: #53f4ff;
     --accent-lime: #b4ff39;
     --accent-orange: #ff7b54;
